@@ -71,21 +71,34 @@ function ShortCard({ short, delay }: { short: (typeof youtubeShorts)[number]; de
   );
 }
 
-/** Instagram reel embed (official embed endpoint, lazy-loaded). */
-function ReelCard({ url, delay }: { url: string; delay: number }) {
-  const code = url.match(/\/(?:reel|p)\/([A-Za-z0-9_-]+)/)?.[1];
+/** Instagram reel embed (official embed endpoint) with caption metadata. */
+function ReelCard({ reel, delay }: { reel: (typeof instagramReels)[number]; delay: number }) {
+  const code = reel.url.match(/\/(?:reel|p)\/([A-Za-z0-9_-]+)/)?.[1];
   if (!code) return null;
   return (
     <Reveal delay={delay}>
-      <div className="relative aspect-[9/16] overflow-hidden rounded-3xl border border-line bg-ink-soft">
-        <iframe
-          src={`https://www.instagram.com/reel/${code}/embed/`}
-          title="Instagram reel"
-          loading="lazy"
-          allow="encrypted-media"
-          className="absolute inset-0 size-full"
-        />
-      </div>
+      <figure>
+        <div className="relative aspect-[9/16] overflow-hidden rounded-3xl border border-line bg-ink-soft">
+          <iframe
+            src={`https://www.instagram.com/reel/${code}/embed/`}
+            title={reel.caption}
+            loading="lazy"
+            allow="encrypted-media"
+            className="absolute inset-0 size-full"
+          />
+        </div>
+        <figcaption className="mt-3 px-1">
+          {reel.tag && (
+            <span className="mb-1.5 inline-block rounded-full bg-gradient-to-r from-pink-500 to-violet-500 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-white">
+              {reel.tag}
+            </span>
+          )}
+          <p className="font-(family-name:--font-display) truncate text-sm font-bold">
+            {reel.caption}
+          </p>
+          <p className="mt-0.5 text-xs text-muted">{reel.date} · Instagram</p>
+        </figcaption>
+      </figure>
     </Reveal>
   );
 }
@@ -189,8 +202,8 @@ export default function Watch() {
         </a>
       </div>
       <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-        {instagramReels.map((url, i) => (
-          <ReelCard key={url} url={url} delay={0.08 * i} />
+        {instagramReels.map((reel, i) => (
+          <ReelCard key={reel.url} reel={reel} delay={0.08 * i} />
         ))}
         {/* keep the row balanced: CTA card only while the rail isn't full */}
         {instagramReels.length < 4 && (

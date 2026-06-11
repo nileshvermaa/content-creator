@@ -190,16 +190,37 @@ export const youtubeShorts = [
 ];
 
 /**
- * Instagram reels to embed. Paste full reel links here, e.g.
- *   "https://www.instagram.com/reel/AbC123xYz/"
- * and they appear on the site automatically. (Instagram blocks
- * anonymous fetching, so these must be added by hand.)
+ * Instagram reels to embed. Add the reel link plus a short caption;
+ * `tag` is an optional badge (e.g. brand collabs). Instagram blocks
+ * anonymous fetching, so keep these in sync by hand.
  */
-export const instagramReels: string[] = [
-  "https://www.instagram.com/reel/DZWm7A4Cu3Q/",
-  "https://www.instagram.com/reel/DZZHZ7UirxZ/",
-  "https://www.instagram.com/reel/DZXUMIFipHR/",
-  "https://www.instagram.com/reel/DZWvmOKC0hD/",
+export const instagramReels: {
+  url: string;
+  caption: string;
+  date: string;
+  tag?: string;
+}[] = [
+  {
+    url: "https://www.instagram.com/reel/DZZHZ7UirxZ/",
+    caption: "Quirky unboxing 🎀👁️👄👁️",
+    date: "Jun 9, 2026",
+    tag: "Brand collab · Dot & Key",
+  },
+  {
+    url: "https://www.instagram.com/reel/DZXUMIFipHR/",
+    caption: "Freshly baked hottie 🥵",
+    date: "Jun 9, 2026",
+  },
+  {
+    url: "https://www.instagram.com/reel/DZWm7A4Cu3Q/",
+    caption: "It is what it is 🥵",
+    date: "Jun 8, 2026",
+  },
+  {
+    url: "https://www.instagram.com/reel/DZWvmOKC0hD/",
+    caption: "Comment ❤️ for template",
+    date: "Jun 8, 2026",
+  },
 ];
 
 export const marqueeWords = [
