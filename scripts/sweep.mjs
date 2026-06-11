@@ -18,7 +18,7 @@ await page.setViewport({ width: 1440, height: 900 });
 await page.goto("http://localhost:3000", { waitUntil: "networkidle0", timeout: 60000 });
 await new Promise((r) => setTimeout(r, 3000));
 
-const ids = ["home", "about", "experience", "work", "skills", "contact"];
+const ids = ["home", "about", "experience", "work", "watch", "skills", "contact"];
 for (const id of ids) {
   await page.evaluate((sel) => document.getElementById(sel)?.scrollIntoView(), id);
   await new Promise((r) => setTimeout(r, 1700));

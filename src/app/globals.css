@@ -1,15 +1,19 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ── palette ───────────────────────────────────────────── */
-  --color-ink: #07070d;
-  --color-ink-soft: #0d0d16;
-  --color-line: rgba(244, 241, 234, 0.08);
-  --color-cream: #f4f1ea;
-  --color-muted: #9b97a8;
-  --color-rose: #ff4d8d;
-  --color-violet: #8b5cf6;
-  --color-amber: #ffb347;
+  /* ── palette: white · pink · black ─────────────────────── */
+  --color-paper: #fdf9f5;
+  --color-paper-soft: #f6efe8;
+  --color-ink: #16120f;
+  --color-line: rgba(22, 18, 15, 0.12);
+  --color-muted: #79706a;
+  --color-rose: #ff3d8f;
+  --color-rose-deep: #d61f73;
+  --color-blush: #ffe3f0;
+
+  /* legacy aliases kept so old class names keep working */
+  --color-cream: #fdf9f5;
+  --color-ink-soft: #f6efe8;
 
   /* ── type ──────────────────────────────────────────────── */
   --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
@@ -18,7 +22,7 @@
   /* ── motion ────────────────────────────────────────────── */
   --animate-marquee: marquee 28s linear infinite;
   --animate-marquee-reverse: marquee-reverse 32s linear infinite;
-  --animate-spin-slow: spin 14s linear infinite;
+  --animate-wiggle: wiggle 2.4s ease-in-out infinite;
 
   @keyframes marquee {
     from { transform: translateX(0); }
@@ -27,6 +31,10 @@
   @keyframes marquee-reverse {
     from { transform: translateX(-50%); }
     to { transform: translateX(0); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-4deg); }
+    50% { transform: rotate(4deg); }
   }
 }
 
@@ -45,15 +53,15 @@ html.lenis body {
 }
 
 body {
-  background: var(--color-ink);
-  color: var(--color-cream);
+  background: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-body);
   overflow-x: clip;
 }
 
 ::selection {
   background: var(--color-rose);
-  color: var(--color-ink);
+  color: var(--color-paper);
 }
 
 /* thin elegant scrollbar */
@@ -61,37 +69,37 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-ink);
+  background: var(--color-paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(244, 241, 234, 0.18);
+  background: rgba(22, 18, 15, 0.25);
   border-radius: 999px;
 }
 
 /* ── reusable pieces ─────────────────────────────────────── */
 
 .text-gradient {
-  background: linear-gradient(110deg, #ff4d8d 5%, #8b5cf6 50%, #ffb347 95%);
+  background: linear-gradient(110deg, #ff3d8f 10%, #d61f73 55%, #16120f 110%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .glass {
-  background: rgba(13, 13, 22, 0.55);
+  background: rgba(253, 249, 245, 0.7);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(244, 241, 234, 0.08);
+  border: 1px solid rgba(22, 18, 15, 0.1);
 }
 
-/* cinematic film grain over everything */
+/* film grain over everything — printed-paper feel */
 .grain::after {
   content: "";
   position: fixed;
   inset: -100%;
   z-index: 80;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: 0.045;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: grain-shift 0.9s steps(4) infinite;
 }
@@ -104,9 +112,9 @@ body {
   100% { transform: translate(2%, 2%); }
 }
 
-/* outlined display text (hero backdrop word) */
+/* outlined display text (poster backdrop words) */
 .text-stroke {
-  -webkit-text-stroke: 1px rgba(244, 241, 234, 0.14);
+  -webkit-text-stroke: 1.5px rgba(22, 18, 15, 0.16);
   color: transparent;
 }
 

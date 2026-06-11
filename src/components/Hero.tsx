@@ -1,102 +1,125 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { site, socials } from "@/lib/data";
 import SocialIcon from "./SocialIcons";
-
-const HeroScene = dynamic(() => import("./three/HeroScene"), { ssr: false });
+import KawaiiCat from "./KawaiiCat";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Hero() {
   return (
-    <section id="home" className="relative flex min-h-screen flex-col overflow-hidden">
-      {/* 3D backdrop */}
-      <div className="absolute inset-0">
-        <HeroScene />
-      </div>
+    <section
+      id="home"
+      className="relative flex min-h-screen flex-col overflow-hidden bg-paper"
+    >
+      {/* soft pink wash corners */}
+      <div className="pointer-events-none absolute -left-32 -top-32 size-96 rounded-full bg-blush blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-40 -right-32 size-[28rem] rounded-full bg-blush blur-3xl" />
 
-      {/* soft vignette so type stays readable over the scene */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#07070d_88%)]" />
-
-      {/* giant outlined backdrop word */}
-      <div
-        aria-hidden
-        className="text-stroke pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none font-(family-name:--font-display) text-[26vw] font-extrabold leading-none tracking-tight"
+      {/* poster corner credits */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.8 }}
+        className="absolute left-6 top-24 text-xs font-semibold tracking-[0.3em] text-muted md:left-10 md:top-28"
       >
-        POV
-      </div>
+        ©2026
+      </motion.p>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-6 pt-28 md:px-10">
+      {/* center stage: giant word + photo on top */}
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-4 pt-24 md:pt-20">
+        <div className="relative flex w-full items-center justify-center">
+          {/* the giant word */}
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.1, delay: 0.35, ease }}
+            className="font-(family-name:--font-display) select-none whitespace-nowrap text-center text-[10vw] font-extrabold leading-none tracking-[-0.05em] text-rose md:text-[11.5vw]"
+          >
+            P<span className="text-ink">O</span>RTF<span className="text-ink">O</span>LIO
+          </motion.h1>
+
+          {/* her photo, in front of the middle letters */}
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.65, ease }}
+            className="absolute left-1/2 top-1/2 w-[26vw] min-w-40 max-w-60 -translate-x-1/2 -translate-y-1/2"
+          >
+            {/* cat peeking over the frame */}
+            <KawaiiCat
+              variant="peek"
+              className="absolute -top-7 right-6 z-10 w-16 text-ink md:-top-8 md:w-20"
+            />
+            <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border-[3px] border-ink bg-paper shadow-[10px_12px_0_0_rgba(255,61,143,0.35)]">
+              <Image
+                src="/pragati.jpg"
+                alt="Pragati Srivastava"
+                fill
+                priority
+                sizes="(min-width: 768px) 240px, 45vw"
+                className="object-cover"
+              />
+            </div>
+          </motion.div>
+        </div>
+
         <motion.p
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15, ease }}
-          className="mb-6 flex items-center gap-3 text-xs font-medium uppercase tracking-[0.35em] text-muted"
+          transition={{ duration: 0.8, delay: 0.5, ease }}
+          className="mt-24 text-center text-[10px] font-semibold uppercase tracking-[0.5em] text-rose md:mt-28 md:text-xs"
         >
-          <span className="inline-block size-1.5 animate-pulse rounded-full bg-rose" />
           {site.role}
         </motion.p>
 
-        <h1 className="font-(family-name:--font-display) text-[clamp(2.5rem,10.5vw,8.5rem)] font-extrabold leading-[0.95] tracking-tight">
-          <motion.span
-            className="block"
-            initial={{ opacity: 0, y: 80 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease }}
-          >
-            {site.firstName}
-          </motion.span>
-          <motion.span
-            className="text-gradient block"
-            initial={{ opacity: 0, y: 80 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.45, ease }}
-          >
-            {site.lastName}
-          </motion.span>
-        </h1>
-
         <motion.p
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.65, ease }}
-          className="mt-8 max-w-xl text-lg leading-relaxed text-muted"
+          transition={{ duration: 0.9, delay: 0.9, ease }}
+          className="mt-5 max-w-md text-center text-sm leading-relaxed text-muted md:text-base"
         >
-          {site.tagline} I craft scroll-stopping stories and manage digital media
-          that turns audiences into communities.
+          {site.tagline} Scroll-stopping stories, managed feeds, and audiences
+          that stick around.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.8, ease }}
-          className="mt-10 flex flex-wrap items-center gap-4"
+          transition={{ duration: 0.9, delay: 1.05, ease }}
+          className="mt-8 flex flex-wrap items-center justify-center gap-3"
         >
           <a
-            href="#work"
-            className="group relative overflow-hidden rounded-full bg-cream px-8 py-4 text-sm font-semibold text-ink transition-transform duration-300 hover:scale-105"
+            href="#watch"
+            className="rounded-full bg-ink px-7 py-3.5 text-sm font-semibold text-paper transition-all duration-300 hover:bg-rose hover:shadow-[4px_5px_0_0_rgba(22,18,15,0.9)]"
           >
-            <span className="relative z-10 transition-colors duration-300 group-hover:text-cream">
-              View my work
-            </span>
-            <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-rose to-violet transition-transform duration-300 group-hover:translate-y-0" />
+            Watch my work
           </a>
           <a
             href="#contact"
-            className="rounded-full border border-line px-8 py-4 text-sm font-semibold text-cream transition-colors duration-300 hover:border-rose hover:text-rose"
+            className="rounded-full border-2 border-ink px-7 py-3.5 text-sm font-semibold transition-all duration-300 hover:border-rose hover:text-rose"
           >
             Let&apos;s collaborate
           </a>
         </motion.div>
+      </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.1 }}
-          className="mt-14 flex flex-wrap items-center gap-3"
-        >
+      {/* poster footer strip */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.3, duration: 1 }}
+        className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-4 px-6 pb-8 text-[10px] font-semibold uppercase tracking-[0.25em] md:flex-row md:items-end md:justify-between md:px-10 md:text-xs"
+      >
+        <p className="text-muted">
+          Presented by
+          <span className="mt-1 block text-sm normal-case tracking-normal text-ink">
+            {site.name}
+          </span>
+        </p>
+        <div className="flex flex-wrap items-center gap-4">
           {socials.map((s) => (
             <a
               key={s.label}
@@ -104,28 +127,13 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${s.label} — ${s.handle}`}
-              className="group flex items-center gap-2.5 rounded-full border border-line px-4 py-2.5 text-xs uppercase tracking-[0.2em] text-muted transition-all duration-300 hover:border-rose/60 hover:text-cream"
+              className="flex items-center gap-1.5 py-1.5 text-muted underline-offset-4 transition-colors duration-300 hover:text-rose hover:underline"
             >
-              <SocialIcon name={s.label} className="size-4 transition-colors duration-300 group-hover:text-rose" />
+              <SocialIcon name={s.label} className="size-3.5" />
               {s.label}
             </a>
           ))}
-        </motion.div>
-      </div>
-
-      {/* scroll cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 1 }}
-        className="relative z-10 mx-auto mb-10 flex flex-col items-center gap-2 text-muted"
-      >
-        <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
-        <motion.span
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-          className="block h-8 w-px bg-gradient-to-b from-rose to-transparent"
-        />
+        </div>
       </motion.div>
     </section>
   );

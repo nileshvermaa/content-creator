@@ -32,7 +32,7 @@ export default function Navbar() {
     >
       <nav
         className={`flex w-full max-w-5xl items-center justify-between rounded-full px-6 py-3 transition-all duration-500 ${
-          scrolled ? "glass shadow-lg shadow-black/30" : ""
+          scrolled ? "glass shadow-lg shadow-ink/5" : ""
         }`}
       >
         <a
@@ -47,7 +47,7 @@ export default function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-sm text-muted transition-colors duration-300 hover:text-cream"
+                className="text-sm text-muted transition-colors duration-300 hover:text-ink"
               >
                 {l.label}
               </a>
@@ -58,7 +58,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <a
             href="#contact"
-            className="hidden rounded-full bg-cream px-5 py-2 text-sm font-semibold text-ink transition-all duration-300 hover:bg-rose hover:text-cream md:block"
+            className="hidden rounded-full bg-ink px-5 py-2 text-sm font-semibold text-paper transition-all duration-300 hover:bg-rose md:block"
           >
             Let&apos;s talk
           </a>
@@ -66,13 +66,13 @@ export default function Navbar() {
           <button
             aria-label="Toggle menu"
             onClick={() => setOpen((v) => !v)}
-            className="flex size-10 flex-col items-center justify-center gap-1.5 rounded-full border border-line md:hidden"
+            className="flex size-10 flex-col items-center justify-center gap-1.5 rounded-full border border-line bg-paper/70 md:hidden"
           >
             <span
-              className={`block h-px w-4 bg-cream transition-transform duration-300 ${open ? "translate-y-[3.5px] rotate-45" : ""}`}
+              className={`block h-px w-4 bg-ink transition-transform duration-300 ${open ? "translate-y-[3.5px] rotate-45" : ""}`}
             />
             <span
-              className={`block h-px w-4 bg-cream transition-transform duration-300 ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`}
+              className={`block h-px w-4 bg-ink transition-transform duration-300 ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`}
             />
           </button>
         </div>
@@ -101,7 +101,7 @@ export default function Navbar() {
               <a
                 href="#contact"
                 onClick={() => setOpen(false)}
-                className="text-gradient font-(family-name:--font-display) text-2xl font-semibold"
+                className="font-(family-name:--font-display) text-2xl font-semibold text-rose"
               >
                 Let&apos;s talk
               </a>

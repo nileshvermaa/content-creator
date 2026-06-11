@@ -31,6 +31,11 @@ export const socials = [
     handle: "pragatisrivastava3107",
     href: "https://www.linkedin.com/in/pragatisrivastava3107",
   },
+  {
+    label: "Myntra",
+    handle: "Myntra Studio",
+    href: "https://www.myntra.com/studio/influencer?id=Sog3Jjt7vK&affiliateId=Sog3Jjt7vK&shared=true&utm_medium=social_share_ugc_profile&utm_source=ugc_affiliate&utm_campaign=Sog3Jjt7vK&affiliate_id=Sog3Jjt7vK",
+  },
 ] as const;
 
 export const about = {
@@ -221,6 +226,16 @@ export const instagramReels: {
     caption: "Comment ❤️ for template",
     date: "Jun 8, 2026",
   },
+];
+
+/**
+ * Cumulative YouTube Shorts views, tallied from the real per-video
+ * counts above. Append a point whenever views are re-checked.
+ */
+export const viewsTrend = [
+  { label: "Apr '26", views: 0 },
+  { label: "May '26", views: 3784 },
+  { label: "Jun '26", views: 5739 },
 ];
 
 export const marqueeWords = [

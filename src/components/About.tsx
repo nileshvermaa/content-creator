@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { animate, motion, useInView } from "framer-motion";
 import Reveal from "./Reveal";
+import KawaiiCat from "./KawaiiCat";
 import { about, site } from "@/lib/data";
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
@@ -24,7 +25,10 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
   }, [inView, value, suffix]);
 
   return (
-    <span ref={ref} className="text-gradient font-(family-name:--font-display) text-6xl font-extrabold">
+    <span
+      ref={ref}
+      className="font-(family-name:--font-display) text-6xl font-extrabold text-rose"
+    >
       00{suffix}
     </span>
   );
@@ -33,8 +37,14 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 export default function About() {
   return (
     <section id="about" className="relative mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-40">
+      {/* a cat naps on the section divider */}
+      <KawaiiCat
+        variant="sleep"
+        className="absolute -top-10 right-8 w-24 text-ink md:right-16 md:w-28"
+      />
+
       <Reveal>
-        <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-rose">
+        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-rose">
           01 — The Story
         </p>
       </Reveal>
@@ -57,7 +67,7 @@ export default function About() {
           <div className="mt-14 grid gap-10 sm:grid-cols-3">
             {about.stats.map((stat, i) => (
               <Reveal key={stat.label} delay={0.15 * i}>
-                <div className="border-l border-line pl-5">
+                <div className="border-l-[3px] border-ink pl-5">
                   <Counter value={stat.value} suffix={stat.suffix} />
                   <p className="mt-3 text-sm leading-snug text-muted">{stat.label}</p>
                 </div>
@@ -66,14 +76,14 @@ export default function About() {
           </div>
         </div>
 
-        {/* floating identity card */}
+        {/* polaroid identity card */}
         <Reveal delay={0.25} className="self-center">
           <motion.div
             whileHover={{ rotate: 0, scale: 1.02 }}
-            className="glass relative rotate-2 rounded-3xl p-5 transition-transform duration-500"
+            className="relative rotate-2 rounded-3xl border-[3px] border-ink bg-paper p-5 shadow-[10px_12px_0_0_rgba(255,61,143,0.35)] transition-transform duration-500"
           >
-            <div className="absolute -top-3 left-8 z-10 flex items-center gap-2 rounded-full bg-gradient-to-r from-rose to-violet px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-cream">
-              <span className="size-1.5 animate-pulse rounded-full bg-cream" />
+            <div className="absolute -top-3 left-8 z-10 flex items-center gap-2 rounded-full bg-rose px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-paper">
+              <span className="size-1.5 animate-pulse rounded-full bg-paper" />
               Now recording
             </div>
             <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
@@ -84,29 +94,28 @@ export default function About() {
                 sizes="(min-width: 768px) 480px, 92vw"
                 className="object-cover transition-transform duration-700 hover:scale-105"
               />
-              {/* cinematic bottom fade */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/80 to-transparent" />
-              <p className="font-(family-name:--font-display) absolute bottom-4 left-5 text-3xl font-extrabold">
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/70 to-transparent" />
+              <p className="font-(family-name:--font-display) absolute bottom-4 left-5 text-3xl font-extrabold text-paper">
                 P<span className="text-rose">.</span>S
               </p>
             </div>
             <div className="mt-6 space-y-4 px-2 pb-2 text-sm">
               <div className="flex justify-between border-b border-line pb-3">
                 <span className="text-muted">Base</span>
-                <span>{site.location}</span>
+                <span className="font-medium">{site.location}</span>
               </div>
               <div className="flex justify-between border-b border-line pb-3">
                 <span className="text-muted">Currently</span>
-                <span>MBA @ IIT Patna</span>
+                <span className="font-medium">MBA @ IIT Patna</span>
               </div>
               <div className="flex justify-between border-b border-line pb-3">
                 <span className="text-muted">Focus</span>
-                <span>Content × Strategy</span>
+                <span className="font-medium">Content × Strategy</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted">Status</span>
-                <span className="flex items-center gap-2">
-                  <span className="size-2 animate-pulse rounded-full bg-emerald-400" />
+                <span className="flex items-center gap-2 font-medium">
+                  <span className="size-2 animate-pulse rounded-full bg-rose" />
                   Open to collabs
                 </span>
               </div>
