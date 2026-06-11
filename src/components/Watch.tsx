@@ -192,14 +192,17 @@ export default function Watch() {
         {instagramReels.map((url, i) => (
           <ReelCard key={url} url={url} delay={0.08 * i} />
         ))}
-        <FollowCard
-          href={instagram.href}
-          icon="Instagram"
-          handle={instagram.handle}
-          line="POV-first reels & everyday cinema"
-          accent="from-pink-500 via-fuchsia-500 to-violet-500"
-          delay={0.08 * instagramReels.length}
-        />
+        {/* keep the row balanced: CTA card only while the rail isn't full */}
+        {instagramReels.length < 4 && (
+          <FollowCard
+            href={instagram.href}
+            icon="Instagram"
+            handle={instagram.handle}
+            line="POV-first reels & everyday cinema"
+            accent="from-pink-500 via-fuchsia-500 to-violet-500"
+            delay={0.08 * instagramReels.length}
+          />
+        )}
       </div>
     </section>
   );

@@ -195,7 +195,12 @@ export const youtubeShorts = [
  * and they appear on the site automatically. (Instagram blocks
  * anonymous fetching, so these must be added by hand.)
  */
-export const instagramReels: string[] = [];
+export const instagramReels: string[] = [
+  "https://www.instagram.com/reel/DZWm7A4Cu3Q/",
+  "https://www.instagram.com/reel/DZZHZ7UirxZ/",
+  "https://www.instagram.com/reel/DZXUMIFipHR/",
+  "https://www.instagram.com/reel/DZWvmOKC0hD/",
+];
 
 export const marqueeWords = [
   "Content Strategy",
