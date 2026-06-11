@@ -5,6 +5,8 @@ import Image from "next/image";
 import { animate, motion, useInView } from "framer-motion";
 import Reveal from "./Reveal";
 import KawaiiCat from "./KawaiiCat";
+import Boopable from "./Boopable";
+import LiveWeather from "./LiveWeather";
 import { about, site } from "@/lib/data";
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
@@ -37,11 +39,12 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 export default function About() {
   return (
     <section id="about" className="relative mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-40">
-      {/* a cat naps on the section divider */}
-      <KawaiiCat
-        variant="sleep"
-        className="absolute -top-10 right-8 w-24 text-ink md:right-16 md:w-28"
-      />
+      {/* a cat naps on the section divider (boop to wake) */}
+      <div className="absolute -top-10 right-8 w-24 md:right-16 md:w-28">
+        <Boopable>
+          <KawaiiCat variant="sleep" className="w-full text-ink" />
+        </Boopable>
+      </div>
 
       <Reveal>
         <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-rose">
@@ -102,7 +105,10 @@ export default function About() {
             <div className="mt-6 space-y-4 px-2 pb-2 text-sm">
               <div className="flex justify-between border-b border-line pb-3">
                 <span className="text-muted">Base</span>
-                <span className="font-medium">{site.location}</span>
+                <span className="font-medium">
+                  {site.location}
+                  <LiveWeather />
+                </span>
               </div>
               <div className="flex justify-between border-b border-line pb-3">
                 <span className="text-muted">Currently</span>

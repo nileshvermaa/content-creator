@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Reveal from "./Reveal";
 import SocialIcon from "./SocialIcons";
 import KawaiiCat from "./KawaiiCat";
+import LocalTime from "./LocalTime";
 import { site, socials } from "@/lib/data";
 
 export default function Contact() {
@@ -59,6 +60,9 @@ export default function Contact() {
             </p>
             <p className="mt-2 text-sm text-paper/60">
               {site.role} — {site.location}
+            </p>
+            <p className="mt-3 text-xs text-paper/50">
+              <LocalTime />
             </p>
           </div>
 

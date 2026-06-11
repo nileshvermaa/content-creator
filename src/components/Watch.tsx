@@ -6,6 +6,7 @@ import Reveal from "./Reveal";
 import SocialIcon from "./SocialIcons";
 import KawaiiCat from "./KawaiiCat";
 import ViewsChart from "./ViewsChart";
+import CatFact from "./CatFact";
 import { socials, youtubeShorts, instagramReels } from "@/lib/data";
 
 const instagram = socials.find((s) => s.label === "Instagram")!;
@@ -232,6 +233,9 @@ export default function Watch() {
 
         {/* growth chart */}
         <ViewsChart />
+
+        {/* live cat-fact intermission */}
+        <CatFact />
 
         {/* a paw-print trail wanders off the section */}
         <div className="mt-10 flex items-center gap-3 opacity-30" aria-hidden>

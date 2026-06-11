@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Reveal from "./Reveal";
 import KawaiiCat from "./KawaiiCat";
+import Boopable from "./Boopable";
 import { showcase } from "@/lib/data";
 
 function TiltCard({ item, delay }: { item: (typeof showcase)[number]; delay: number }) {
@@ -79,7 +80,9 @@ export default function Showcase() {
           </h2>
         </Reveal>
         <Reveal delay={0.2} className="hidden shrink-0 md:block">
-          <KawaiiCat variant="sit" className="w-20 text-ink" />
+          <Boopable>
+            <KawaiiCat variant="sit" className="w-20 text-ink" />
+          </Boopable>
         </Reveal>
       </div>
 

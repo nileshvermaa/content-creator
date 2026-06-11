@@ -4,7 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { site, socials } from "@/lib/data";
 import SocialIcon from "./SocialIcons";
-import KawaiiCat from "./KawaiiCat";
+import Boopable from "./Boopable";
+import PeekFollowCat from "./PeekFollowCat";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -46,20 +47,21 @@ export default function Hero() {
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.65, ease }}
-            className="absolute left-1/2 top-1/2 w-[26vw] min-w-40 max-w-60 -translate-x-1/2 -translate-y-1/2"
+            className="absolute left-1/2 top-1/2 w-[31vw] min-w-48 max-w-72 -translate-x-1/2 -translate-y-1/2"
           >
-            {/* cat peeking over the frame */}
-            <KawaiiCat
-              variant="peek"
-              className="absolute -top-7 right-6 z-10 w-16 text-ink md:-top-8 md:w-20"
-            />
+            {/* cat peeking over the frame — its eyes follow your cursor */}
+            <div className="absolute -top-8 right-6 z-10 w-16 md:-top-10 md:w-20">
+              <Boopable>
+                <PeekFollowCat className="w-full text-ink" />
+              </Boopable>
+            </div>
             <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border-[3px] border-ink bg-paper shadow-[10px_12px_0_0_rgba(255,61,143,0.35)]">
               <Image
                 src="/pragati.jpg"
                 alt="Pragati Srivastava"
                 fill
                 priority
-                sizes="(min-width: 768px) 240px, 45vw"
+                sizes="(min-width: 768px) 288px, 50vw"
                 className="object-cover"
               />
             </div>
@@ -70,7 +72,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5, ease }}
-          className="mt-24 text-center text-[10px] font-semibold uppercase tracking-[0.5em] text-rose md:mt-28 md:text-xs"
+          className="mt-28 text-center text-[10px] font-semibold uppercase tracking-[0.5em] text-rose md:mt-36 md:text-xs"
         >
           {site.role}
         </motion.p>
