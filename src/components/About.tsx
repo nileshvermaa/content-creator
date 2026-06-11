@@ -88,7 +88,7 @@ export default function About() {
             </div>
             <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
               <Image
-                src="/pragati.jpg"
+                src="/pragati-about.jpg"
                 alt="Pragati Srivastava"
                 fill
                 sizes="(min-width: 768px) 480px, 92vw"
