@@ -15,7 +15,7 @@ export default function Contact() {
       <div className="relative mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-44">
         <Reveal>
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-rose">
-            05 — Roll Credits
+            06 — Roll Credits
           </p>
         </Reveal>
 

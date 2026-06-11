@@ -13,6 +13,7 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
+    remotePatterns: [{ protocol: "https", hostname: "i.ytimg.com" }],
   },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];

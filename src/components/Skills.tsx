@@ -7,7 +7,7 @@ export default function Skills() {
       <div className="mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-40">
         <Reveal>
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.35em] text-rose">
-            04 — The Toolkit
+            05 — The Toolkit
           </p>
         </Reveal>
         <Reveal delay={0.1}>

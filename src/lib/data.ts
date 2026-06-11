@@ -164,6 +164,39 @@ export const certifications = [
   { name: "Digital Marketing in Pharmacy", org: "Makeskill, Delhi", year: "2022" },
 ];
 
+/**
+ * YouTube Shorts pulled from @palakunfiltered26 (sorted by views).
+ * Add new entries with the 11-char video id from the short's URL.
+ */
+export const youtubeShorts = [
+  {
+    id: "_-Qb-w9-VWs",
+    title: "New zudio blush pods ✨",
+    views: 2338,
+    date: "May 2026",
+  },
+  {
+    id: "M-m4Zubuiak",
+    title: "Freshly baked hottie 🥵",
+    views: 1954,
+    date: "Jun 2026",
+  },
+  {
+    id: "LvpEeBi4ALQ",
+    title: "in love with me 💅🫦",
+    views: 1446,
+    date: "May 2026",
+  },
+];
+
+/**
+ * Instagram reels to embed. Paste full reel links here, e.g.
+ *   "https://www.instagram.com/reel/AbC123xYz/"
+ * and they appear on the site automatically. (Instagram blocks
+ * anonymous fetching, so these must be added by hand.)
+ */
+export const instagramReels: string[] = [];
+
 export const marqueeWords = [
   "Content Strategy",
   "POV Storytelling",
