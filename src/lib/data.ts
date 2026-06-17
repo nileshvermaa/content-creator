@@ -36,6 +36,11 @@ export const socials = [
     handle: "Myntra Studio",
     href: "https://www.myntra.com/studio/influencer?id=Sog3Jjt7vK&affiliateId=Sog3Jjt7vK&shared=true&utm_medium=social_share_ugc_profile&utm_source=ugc_affiliate&utm_campaign=Sog3Jjt7vK&affiliate_id=Sog3Jjt7vK",
   },
+  {
+    label: "Wishlink",
+    handle: "wishlink.com/pragspov",
+    href: "https://www.wishlink.com/pragspov",
+  },
 ] as const;
 
 export const about = {

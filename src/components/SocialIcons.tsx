@@ -1,4 +1,4 @@
-type IconName = "Instagram" | "YouTube" | "LinkedIn" | "Myntra";
+type IconName = "Instagram" | "YouTube" | "LinkedIn" | "Myntra" | "Wishlink";
 
 const paths: Record<IconName, string> = {
   Instagram:
@@ -10,6 +10,9 @@ const paths: Record<IconName, string> = {
   /* shopping bag — stands in for Myntra Studio */
   Myntra:
     "M16 7V6a4 4 0 0 0-8 0v1H4.5a1 1 0 0 0-1 .94l-.8 12A2 2 0 0 0 4.7 22h14.6a2 2 0 0 0 2-2.06l-.8-12a1 1 0 0 0-1-.94H16Zm-6-1a2 2 0 1 1 4 0v1h-4V6Zm-2 5a1 1 0 1 0 2 0v-1H8v1Zm6 0a1 1 0 1 0 2 0v-1h-2v1Z",
+  /* price tag — stands in for the Wishlink shop */
+  Wishlink:
+    "M21.41 11.58 12.41 2.58A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9a2 2 0 0 0 2.82 0l7-7a2 2 0 0 0 0-2.84ZM6.5 8A1.5 1.5 0 1 1 8 6.5 1.5 1.5 0 0 1 6.5 8Z",
 };
 
 export default function SocialIcon({
