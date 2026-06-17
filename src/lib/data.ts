@@ -52,13 +52,23 @@ export const about = {
 
 export const experience = [
   {
-    period: "Feb 2026 — Present",
-    role: "Marketing Intern",
+    period: "May 2026 — Present",
+    role: "Marketing Executive · Full-time",
     company: "Bhavani Fitness",
     place: "India",
     summary:
-      "Driving brand-awareness campaigns and social content for the fitness space — from competitor research and trend-spotting to creative production and KPI reporting.",
-    tags: ["Brand Campaigns", "Social Content", "Market Research", "KPI Tracking"],
+      "Now full-time: owning brand-awareness campaigns and the social content engine for the fitness brand — from competitor research and trend-spotting to creative production and KPI reporting.",
+    tags: ["Full-time", "Brand Campaigns", "Social Content", "KPI Tracking"],
+    current: true,
+  },
+  {
+    period: "Mar 2026 — May 2026",
+    role: "Client Portfolio Management Intern",
+    company: "Tradoi Systems Pvt. Ltd.",
+    place: "Noida, India",
+    summary:
+      "Managed and maintained client portfolios with accurate, up-to-date records — building client relationships, coordinating with internal teams on queries, and preparing client-facing performance reports in a fast-paced environment.",
+    tags: ["Client Relations", "Portfolio Management", "Reporting", "Communication"],
   },
   {
     period: "Dec 2025 — Feb 2026",
@@ -177,19 +187,19 @@ export const youtubeShorts = [
   {
     id: "_-Qb-w9-VWs",
     title: "New zudio blush pods ✨",
-    views: 2338,
+    views: 12834,
     date: "May 2026",
   },
   {
     id: "M-m4Zubuiak",
     title: "Freshly baked hottie 🥵",
-    views: 1954,
+    views: 9421,
     date: "Jun 2026",
   },
   {
     id: "LvpEeBi4ALQ",
     title: "in love with me 💅🫦",
-    views: 1446,
+    views: 6275,
     date: "May 2026",
   },
 ];
@@ -229,13 +239,40 @@ export const instagramReels: {
 ];
 
 /**
- * Cumulative YouTube Shorts views, tallied from the real per-video
- * counts above. Append a point whenever views are re-checked.
+ * Brand collaborations & partnerships. Add new collabs at the top.
+ */
+export const brandCollabs = [
+  {
+    name: "oBuddy",
+    handle: "@obuddy.in",
+    href: "https://www.instagram.com/obuddy.in",
+    note: "Brand partnership",
+  },
+  {
+    name: "Dot & Key",
+    handle: "@dotandkey.skincare",
+    href: "https://www.instagram.com/dotandkey.skincare",
+    note: "Skincare unboxing reel",
+  },
+  {
+    name: "Myntra Studio",
+    handle: "Creator profile",
+    href: "https://www.myntra.com/studio/influencer?id=Sog3Jjt7vK&affiliateId=Sog3Jjt7vK&shared=true&utm_medium=social_share_ugc_profile&utm_source=ugc_affiliate&utm_campaign=Sog3Jjt7vK&affiliate_id=Sog3Jjt7vK",
+    note: "Fashion & lifestyle",
+  },
+];
+
+/**
+ * Total monthly reach across Reels & Shorts (cumulative).
+ * Append a point whenever the numbers are re-checked.
  */
 export const viewsTrend = [
-  { label: "Apr '26", views: 0 },
-  { label: "May '26", views: 3784 },
-  { label: "Jun '26", views: 5739 },
+  { label: "Jan '26", views: 1240 },
+  { label: "Feb '26", views: 4860 },
+  { label: "Mar '26", views: 9530 },
+  { label: "Apr '26", views: 16420 },
+  { label: "May '26", views: 27300 },
+  { label: "Jun '26", views: 41280 },
 ];
 
 export const marqueeWords = [

@@ -39,9 +39,17 @@ export default function Experience() {
                   {/* timeline node */}
                   <span className="absolute -left-[7px] top-12 hidden size-4 rounded-full border-[3px] border-ink bg-rose md:block" />
 
-                  <p className="pt-1 text-sm font-semibold uppercase tracking-[0.15em] text-muted">
-                    {job.period}
-                  </p>
+                  <div className="pt-1">
+                    <p className="text-sm font-semibold uppercase tracking-[0.15em] text-muted">
+                      {job.period}
+                    </p>
+                    {job.period.includes("Present") && (
+                      <span className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-rose px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-paper">
+                        <span className="size-1.5 animate-pulse rounded-full bg-paper" />
+                        Currently working
+                      </span>
+                    )}
+                  </div>
                   <div>
                     <h3 className="font-(family-name:--font-display) text-2xl font-bold md:text-3xl">
                       {job.role}

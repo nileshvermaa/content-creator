@@ -42,7 +42,7 @@ export default function ViewsChart() {
           The graph only goes <span className="text-rose">up</span> 📈
         </h4>
         <p className="text-xs text-muted">
-          Cumulative YouTube Shorts views · real numbers, no filter
+          Total monthly reach across Reels &amp; Shorts · growing every month
         </p>
       </div>
 
