@@ -39,8 +39,8 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 export default function About() {
   return (
     <section id="about" className="relative mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-40">
-      {/* a cat naps on the section divider (boop to wake) */}
-      <div className="absolute -top-10 right-8 w-24 md:right-16 md:w-28">
+      {/* a cat naps just below the marquee divider (boop to wake) */}
+      <div className="absolute top-3 right-6 w-24 md:top-6 md:right-16 md:w-28">
         <Boopable>
           <KawaiiCat variant="sleep" className="w-full text-ink" />
         </Boopable>

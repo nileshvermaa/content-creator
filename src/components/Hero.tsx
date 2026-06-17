@@ -47,10 +47,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.65, ease }}
-            className="absolute left-1/2 top-1/2 w-[31vw] min-w-48 max-w-72 -translate-x-1/2 -translate-y-[42%]"
+            className="absolute left-1/2 top-1/2 w-[31vw] min-w-48 max-w-72 -translate-x-1/2 -translate-y-1/2"
           >
             {/* cat peeking over the frame — its eyes follow your cursor */}
-            <div className="absolute -top-5 right-6 z-10 w-16 md:-top-6 md:w-20">
+            <div className="absolute -top-8 right-6 z-10 w-16 md:-top-10 md:w-20">
               <Boopable>
                 <PeekFollowCat className="w-full text-ink" />
               </Boopable>
