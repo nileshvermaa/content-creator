@@ -7,6 +7,7 @@ import SocialIcon from "./SocialIcons";
 import KawaiiCat from "./KawaiiCat";
 import ViewsChart from "./ViewsChart";
 import CatFact from "./CatFact";
+import InstagramEmbed from "./InstagramEmbed";
 import { socials, youtubeShorts, instagramReels } from "@/lib/data";
 
 const instagram = socials.find((s) => s.label === "Instagram")!;
@@ -106,32 +107,25 @@ function ShortCard({ short, delay }: { short: (typeof youtubeShorts)[number]; de
   );
 }
 
-/** Instagram reel embed (official embed endpoint) with caption metadata. */
+/** Instagram reel — official embed.js card with caption metadata below. */
 function ReelCard({ reel, delay }: { reel: (typeof instagramReels)[number]; delay: number }) {
-  const code = reel.url.match(/\/(?:reel|p)\/([A-Za-z0-9_-]+)/)?.[1];
-  if (!code) return null;
   return (
-    <Reveal delay={delay}>
-      <figure>
-        <div className="relative aspect-[9/16] overflow-hidden rounded-3xl border-[3px] border-ink bg-paper-soft">
-          <iframe
-            src={`https://www.instagram.com/reel/${code}/embed/`}
-            title={reel.caption}
-            loading="lazy"
-            allow="encrypted-media"
-            className="absolute inset-0 size-full"
-          />
+    <Reveal delay={delay} className="h-full">
+      <figure className="flex h-full flex-col overflow-hidden rounded-3xl border-[3px] border-ink bg-paper">
+        {reel.tag && (
+          <figcaption className="flex items-center gap-2 bg-rose px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-paper">
+            <SocialIcon name="Instagram" className="size-3.5" />
+            {reel.tag}
+          </figcaption>
+        )}
+        <div className="flex flex-1 items-center justify-center p-2">
+          <InstagramEmbed url={reel.url} />
         </div>
-        <figcaption className="mt-3 px-1">
-          {reel.tag && (
-            <span className="mb-1.5 inline-block rounded-full bg-rose px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-paper">
-              {reel.tag}
-            </span>
-          )}
+        <figcaption className="border-t-2 border-ink/10 px-4 py-3">
           <p className="font-(family-name:--font-display) truncate text-sm font-bold">
             {reel.caption}
           </p>
-          <p className="mt-0.5 text-xs text-muted">{reel.date} · Instagram</p>
+          <p className="mt-0.5 text-xs text-muted">{reel.date} · Instagram reel</p>
         </figcaption>
       </figure>
     </Reveal>
@@ -195,20 +189,17 @@ export default function Watch() {
           href={instagram.href}
           linkLabel="All reels"
         />
-        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+        <div className="mt-8 grid grid-cols-1 items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {instagramReels.map((reel, i) => (
             <ReelCard key={reel.url} reel={reel} delay={0.08 * i} />
           ))}
-          {/* keep the row balanced: CTA card only while the rail isn't full */}
-          {instagramReels.length < 4 && (
-            <FollowCard
-              href={instagram.href}
-              icon="Instagram"
-              handle={instagram.handle}
-              line="POV-first reels & everyday cinema"
-              delay={0.08 * instagramReels.length}
-            />
-          )}
+          <FollowCard
+            href={instagram.href}
+            icon="Instagram"
+            handle={instagram.handle}
+            line="POV-first reels & everyday cinema"
+            delay={0.08 * instagramReels.length}
+          />
         </div>
 
         {/* YouTube rail */}
