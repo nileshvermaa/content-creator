@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="7" fill="#ff3d8f"/>
+  <!-- ears -->
+  <path d="M9 7l5 5-6 1z" fill="#16120f"/>
+  <path d="M23 7l-5 5 6 1z" fill="#16120f"/>
+  <!-- head -->
+  <path d="M16 8c6 0 9 4 9 9s-4 8-9 8-9-3-9-8 3-9 9-9z" fill="#16120f"/>
+  <!-- eyes -->
+  <circle cx="12.4" cy="17" r="1.7" fill="#fdf9f5"/>
+  <circle cx="19.6" cy="17" r="1.7" fill="#fdf9f5"/>
+  <!-- blush -->
+  <circle cx="10.5" cy="20.4" r="1.6" fill="#ff3d8f"/>
+  <circle cx="21.5" cy="20.4" r="1.6" fill="#ff3d8f"/>
+  <!-- nose + mouth :3 -->
+  <path d="M14.6 20.2c.7 1 1.7 1 1.4-.2-.3 1.2.7 1.2 1.4.2" fill="none" stroke="#fdf9f5" stroke-width="1.1" stroke-linecap="round"/>
+  <!-- whiskers -->
+  <path d="M6.5 17h3M6.8 19.6l2.8-.6M25.5 17h-3M25.2 19.6l-2.8-.6" stroke="#fdf9f5" stroke-width="0.9" stroke-linecap="round"/>
+</svg>
