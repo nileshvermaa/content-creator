@@ -244,26 +244,45 @@ export const instagramReels: {
 ];
 
 /**
- * Brand collaborations & partnerships. Add new collabs at the top.
+ * Brand collaborations & partnerships. Each card shows the product(s)
+ * received and links to the brand's page. Add new collabs at the top.
  */
 export const brandCollabs = [
+  {
+    name: "Fiama",
+    handle: "@fiamaindia",
+    href: "https://www.instagram.com/fiamaindia",
+    product: "Hokkaido Milk Bar · Niacinamide Scrub",
+  },
+  {
+    name: "Himalayan Organics",
+    handle: "@the_himalayan_organics",
+    href: "https://www.instagram.com/the_himalayan_organics",
+    product: "Biotin · L-Carnitine · Vitamin B12",
+  },
+  {
+    name: "Bentica",
+    handle: "@bentica.skincare",
+    href: "https://www.instagram.com/bentica.skincare",
+    product: "Matcha Mellow Mask",
+  },
+  {
+    name: "Rosaa",
+    handle: "@rosaa.in",
+    href: "https://www.instagram.com/rosaa.in",
+    product: "Rose Water — set of 2",
+  },
   {
     name: "oBuddy",
     handle: "@obuddy.in",
     href: "https://www.instagram.com/obuddy.in",
-    note: "Brand partnership",
+    product: "Brand partnership",
   },
   {
     name: "Dot & Key",
     handle: "@dotandkey.skincare",
     href: "https://www.instagram.com/dotandkey.skincare",
-    note: "Skincare unboxing reel",
-  },
-  {
-    name: "Myntra Studio",
-    handle: "Creator profile",
-    href: "https://www.myntra.com/studio/influencer?id=Sog3Jjt7vK&affiliateId=Sog3Jjt7vK&shared=true&utm_medium=social_share_ugc_profile&utm_source=ugc_affiliate&utm_campaign=Sog3Jjt7vK&affiliate_id=Sog3Jjt7vK",
-    note: "Fashion & lifestyle",
+    product: "Skincare unboxing reel",
   },
 ];
 
@@ -272,12 +291,12 @@ export const brandCollabs = [
  * Append a point whenever the numbers are re-checked.
  */
 export const viewsTrend = [
-  { label: "Jan '26", views: 1240 },
-  { label: "Feb '26", views: 4860 },
-  { label: "Mar '26", views: 9530 },
-  { label: "Apr '26", views: 16420 },
-  { label: "May '26", views: 27300 },
-  { label: "Jun '26", views: 41280 },
+  { label: "Jan '26", views: 2400 },
+  { label: "Feb '26", views: 8600 },
+  { label: "Mar '26", views: 18200 },
+  { label: "Apr '26", views: 34500 },
+  { label: "May '26", views: 56000 },
+  { label: "Jun '26", views: 82400 },
 ];
 
 export const marqueeWords = [
