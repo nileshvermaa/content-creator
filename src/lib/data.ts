@@ -221,6 +221,30 @@ export const instagramReels: {
   tag?: string;
 }[] = [
   {
+    url: "https://www.instagram.com/reel/DbTaIWdiom-/",
+    caption: "Brand collaboration with BBLUNT",
+    date: "Aug 7, 2026",
+    tag: "Brand collab - BBLUNT",
+  },
+  {
+    url: "https://www.instagram.com/reel/DbWAB0ti2S0/",
+    caption: "Brand collaboration with The Derma Co",
+    date: "Aug 7, 2026",
+    tag: "Brand collab - The Derma Co",
+  },
+  {
+    url: "https://www.instagram.com/reel/DbSL3uSCvMY/",
+    caption: "Brand collaboration with Pilgrim",
+    date: "Aug 7, 2026",
+    tag: "Brand collab - Pilgrim",
+  },
+  {
+    url: "https://www.instagram.com/reel/DbKcUchiRrk/",
+    caption: "Brand collaboration with Caredale",
+    date: "Aug 7, 2026",
+    tag: "Brand collab - Caredale",
+  },
+  {
     url: "https://www.instagram.com/reel/DZZHZ7UirxZ/",
     caption: "Quirky unboxing 🎀👁️👄👁️",
     date: "Jun 9, 2026",
@@ -248,6 +272,34 @@ export const instagramReels: {
  * received and links to the brand's page. Add new collabs at the top.
  */
 export const brandCollabs = [
+  {
+    name: "BBLUNT",
+    handle: "Watch collaboration",
+    href: "https://www.instagram.com/reel/DbTaIWdiom-/",
+    product: "Featured Instagram reel",
+    reel: true,
+  },
+  {
+    name: "The Derma Co",
+    handle: "Watch collaboration",
+    href: "https://www.instagram.com/reel/DbWAB0ti2S0/",
+    product: "Featured Instagram reel",
+    reel: true,
+  },
+  {
+    name: "Pilgrim",
+    handle: "Watch collaboration",
+    href: "https://www.instagram.com/reel/DbSL3uSCvMY/",
+    product: "Featured Instagram reel",
+    reel: true,
+  },
+  {
+    name: "Caredale",
+    handle: "Watch collaboration",
+    href: "https://www.instagram.com/reel/DbKcUchiRrk/",
+    product: "Featured Instagram reel",
+    reel: true,
+  },
   {
     name: "Fiama",
     handle: "@fiamaindia",
@@ -287,16 +339,18 @@ export const brandCollabs = [
 ];
 
 /**
- * Total monthly reach across Reels & Shorts (cumulative).
+ * Total monthly views across Reels & Shorts (cumulative).
  * Append a point whenever the numbers are re-checked.
  */
 export const viewsTrend = [
-  { label: "Jan '26", views: 2400 },
-  { label: "Feb '26", views: 8600 },
-  { label: "Mar '26", views: 18200 },
-  { label: "Apr '26", views: 34500 },
-  { label: "May '26", views: 56000 },
-  { label: "Jun '26", views: 82400 },
+  { label: "Jan '26", views: 18000 },
+  { label: "Feb '26", views: 31000 },
+  { label: "Mar '26", views: 26000 },
+  { label: "Apr '26", views: 57000 },
+  { label: "May '26", views: 46000 },
+  { label: "Jun '26", views: 94000 },
+  { label: "Jul '26", views: 78000 },
+  { label: "Aug '26", views: 152000 },
 ];
 
 export const marqueeWords = [

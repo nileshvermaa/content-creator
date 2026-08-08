@@ -110,7 +110,10 @@ function ShortCard({ short, delay }: { short: (typeof youtubeShorts)[number]; de
 /** Instagram reel — official embed.js card with caption metadata below. */
 function ReelCard({ reel, delay }: { reel: (typeof instagramReels)[number]; delay: number }) {
   return (
-    <Reveal delay={delay} className="h-full">
+    <Reveal
+      delay={delay}
+      className="h-full w-[82vw] max-w-sm shrink-0 snap-start sm:w-[46vw] lg:w-auto lg:max-w-none"
+    >
       <figure className="flex h-full flex-col overflow-hidden rounded-3xl border-[3px] border-ink bg-paper">
         {reel.tag && (
           <figcaption className="flex items-center gap-2 bg-rose px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-paper">
@@ -119,7 +122,7 @@ function ReelCard({ reel, delay }: { reel: (typeof instagramReels)[number]; dela
           </figcaption>
         )}
         <div className="flex flex-1 items-center justify-center p-2">
-          <InstagramEmbed url={reel.url} />
+          <InstagramEmbed url={reel.url} label={reel.caption} />
         </div>
         <figcaption className="border-t-2 border-ink/10 px-4 py-3">
           <p className="font-(family-name:--font-display) truncate text-sm font-bold">
@@ -185,22 +188,30 @@ export default function Watch() {
         {/* Instagram rail — the main stage */}
         <RailHeader
           icon="Instagram"
-          title="On the feed"
+          title="Brand collabs & latest reels"
           href={instagram.href}
           linkLabel="All reels"
         />
-        <div className="mt-8 grid grid-cols-1 items-start gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          className="-mx-6 mt-8 flex snap-x snap-mandatory items-stretch gap-5 overflow-x-auto px-6 pb-4 sm:-mx-10 sm:px-10 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible lg:px-0 lg:pb-0"
+          aria-label="Instagram reels and brand collaborations"
+        >
           {instagramReels.map((reel, i) => (
-            <ReelCard key={reel.url} reel={reel} delay={0.08 * i} />
+            <ReelCard key={reel.url} reel={reel} delay={0.06 * Math.min(i, 5)} />
           ))}
-          <FollowCard
-            href={instagram.href}
-            icon="Instagram"
-            handle={instagram.handle}
-            line="POV-first reels & everyday cinema"
-            delay={0.08 * instagramReels.length}
-          />
+          <div className="h-full w-[82vw] max-w-sm shrink-0 snap-start sm:w-[46vw] lg:w-auto lg:max-w-none">
+            <FollowCard
+              href={instagram.href}
+              icon="Instagram"
+              handle={instagram.handle}
+              line="POV-first reels & everyday cinema"
+              delay={0.36}
+            />
+          </div>
         </div>
+        <p className="mt-3 text-xs text-muted lg:hidden">
+          Swipe to explore all collaborations
+        </p>
 
         {/* YouTube rail */}
         <RailHeader

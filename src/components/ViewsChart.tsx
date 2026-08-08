@@ -1,141 +1,246 @@
 "use client";
 
-import { motion } from "framer-motion";
-import KawaiiCat from "./KawaiiCat";
+import { useState, type PointerEvent as ReactPointerEvent } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { viewsTrend } from "@/lib/data";
 
 const W = 640;
-const H = 280;
-const PAD_X = 56;
-const PAD_TOP = 64;
+const H = 300;
+const PAD_LEFT = 60;
+const PAD_RIGHT = 28;
+const PAD_TOP = 38;
 const PAD_BOTTOM = 48;
+const CHART_BOTTOM = H - PAD_BOTTOM;
+const MAX_VIEWS = 160000;
+const Y_TICKS = [0, 50000, 100000, 150000];
 
 function format(n: number) {
-  return n >= 1000 ? `${(n / 1000).toFixed(1).replace(/\.0$/, "")}K` : String(n);
+  return n >= 1000 ? (n / 1000).toFixed(0) + "K" : String(n);
 }
 
+const points = viewsTrend.map((item, index) => ({
+  ...item,
+  x: PAD_LEFT + (index * (W - PAD_LEFT - PAD_RIGHT)) / (viewsTrend.length - 1),
+  y: CHART_BOTTOM - (item.views / MAX_VIEWS) * (CHART_BOTTOM - PAD_TOP),
+}));
+
+const line = points
+  .map((point, index) => {
+    if (index === 0) return "M " + point.x + " " + point.y;
+    const previous = points[index - 1];
+    const controlX = (previous.x + point.x) / 2;
+    return (
+      "C " +
+      controlX +
+      " " +
+      previous.y +
+      ", " +
+      controlX +
+      " " +
+      point.y +
+      ", " +
+      point.x +
+      " " +
+      point.y
+    );
+  })
+  .join(" ");
+
+const area =
+  line +
+  " L " +
+  points[points.length - 1].x +
+  " " +
+  CHART_BOTTOM +
+  " L " +
+  points[0].x +
+  " " +
+  CHART_BOTTOM +
+  " Z";
+
 export default function ViewsChart() {
-  const max = Math.max(...viewsTrend.map((d) => d.views));
-  const pts = viewsTrend.map((d, i) => ({
-    ...d,
-    x: PAD_X + (i * (W - PAD_X * 2)) / (viewsTrend.length - 1),
-    y: H - PAD_BOTTOM - (d.views / max) * (H - PAD_TOP - PAD_BOTTOM),
-  }));
+  const [activeIndex, setActiveIndex] = useState(points.length - 1);
+  const reducedMotion = useReducedMotion();
+  const activePoint = points[activeIndex];
 
-  // smooth line through the points
-  const line = pts
-    .map((p, i) => {
-      if (i === 0) return `M ${p.x} ${p.y}`;
-      const prev = pts[i - 1];
-      const cx = (prev.x + p.x) / 2;
-      return `C ${cx} ${prev.y}, ${cx} ${p.y}, ${p.x} ${p.y}`;
-    })
-    .join(" ");
+  function handlePointerMove(event: ReactPointerEvent<SVGSVGElement>) {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const pointerX = ((event.clientX - bounds.left) / bounds.width) * W;
+    const closestIndex = Math.round(
+      ((pointerX - PAD_LEFT) / (W - PAD_LEFT - PAD_RIGHT)) * (points.length - 1),
+    );
+    setActiveIndex(Math.max(0, Math.min(points.length - 1, closestIndex)));
+  }
 
-  const area = `${line} L ${pts[pts.length - 1].x} ${H - PAD_BOTTOM} L ${pts[0].x} ${H - PAD_BOTTOM} Z`;
-  const last = pts[pts.length - 1];
+  const tooltipWidth = 112;
+  const tooltipX = Math.max(
+    PAD_LEFT,
+    Math.min(W - PAD_RIGHT - tooltipWidth, activePoint.x - tooltipWidth / 2),
+  );
+  const tooltipY = activePoint.y < 88 ? activePoint.y + 18 : activePoint.y - 66;
+  const bestMonth = Math.max(...viewsTrend.map((item) => item.views));
 
   return (
     <div className="relative mt-8 rounded-3xl border-[3px] border-ink bg-paper p-6 md:p-10">
-      <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h4 className="font-(family-name:--font-display) text-xl font-bold md:text-2xl">
-          The graph only goes <span className="text-rose">up</span> 📈
-        </h4>
-        <p className="text-xs text-muted">
-          80K+ total reach across Reels &amp; Shorts · and climbing
-        </p>
+      <div className="flex flex-wrap items-end justify-between gap-5">
+        <div>
+          <h4 className="font-(family-name:--font-display) text-xl font-bold tracking-tight md:text-2xl">
+            Real growth has <span className="text-rose">plot twists.</span>
+          </h4>
+          <p className="mt-2 text-sm text-muted">Monthly view trend &middot; Jan&mdash;Aug 2026</p>
+        </div>
+        <div className="text-right">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted">
+            Best month
+          </p>
+          <p className="font-(family-name:--font-display) mt-1 text-3xl font-extrabold leading-none text-rose">
+            {format(bestMonth)}
+          </p>
+        </div>
       </div>
 
-      <div className="relative mt-6">
-        <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img" aria-label="Views growing over time">
+      <div className="relative mt-7 overflow-hidden rounded-2xl bg-paper-soft/55 px-2 pb-1 pt-3 md:px-4">
+        <svg
+          viewBox={"0 0 " + W + " " + H}
+          className="w-full touch-pan-y"
+          role="img"
+          aria-label="Interactive monthly views chart showing periods of growth and dips, reaching 152 thousand views in August 2026"
+          onPointerMove={handlePointerMove}
+        >
           <defs>
-            <linearGradient id="area-fill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#ff3d8f" stopOpacity="0.35" />
-              <stop offset="100%" stopColor="#ff3d8f" stopOpacity="0.02" />
+            <linearGradient id="views-area-fill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#ff3d8f" stopOpacity="0.28" />
+              <stop offset="100%" stopColor="#ff3d8f" stopOpacity="0" />
             </linearGradient>
           </defs>
 
-          {/* baseline */}
-          <line
-            x1={PAD_X}
-            y1={H - PAD_BOTTOM}
-            x2={W - PAD_X}
-            y2={H - PAD_BOTTOM}
-            stroke="currentColor"
-            strokeOpacity="0.15"
-            strokeWidth="2"
-            strokeDasharray="2 6"
-            strokeLinecap="round"
-          />
+          {Y_TICKS.map((tick) => {
+            const y = CHART_BOTTOM - (tick / MAX_VIEWS) * (CHART_BOTTOM - PAD_TOP);
+            return (
+              <g key={tick} aria-hidden>
+                <line
+                  x1={PAD_LEFT}
+                  y1={y}
+                  x2={W - PAD_RIGHT}
+                  y2={y}
+                  stroke="#16120f"
+                  strokeOpacity={tick === 0 ? 0.18 : 0.08}
+                  strokeWidth="1"
+                  strokeDasharray={tick === 0 ? undefined : "3 7"}
+                />
+                <text x={PAD_LEFT - 12} y={y + 4} textAnchor="end" fontSize="11" fill="#79706a">
+                  {format(tick)}
+                </text>
+              </g>
+            );
+          })}
 
-          {/* area wash */}
           <motion.path
             d={area}
-            fill="url(#area-fill)"
-            initial={{ opacity: 0 }}
+            fill="url(#views-area-fill)"
+            initial={reducedMotion ? false : { opacity: 0 }}
             whileInView={{ opacity: 1 }}
+            animate={reducedMotion ? { opacity: 1 } : undefined}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.9, delay: 0.9 }}
+            transition={{ duration: reducedMotion ? 0 : 0.5, ease: [0.22, 1, 0.36, 1] }}
           />
 
-          {/* the climbing line */}
           <motion.path
             d={line}
             fill="none"
             stroke="#ff3d8f"
             strokeWidth="4"
             strokeLinecap="round"
-            initial={{ pathLength: 0 }}
+            strokeLinejoin="round"
+            initial={reducedMotion ? false : { pathLength: 0 }}
             whileInView={{ pathLength: 1 }}
+            animate={reducedMotion ? { pathLength: 1 } : undefined}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            transition={{ duration: reducedMotion ? 0 : 0.8, ease: [0.22, 1, 0.36, 1] }}
           />
 
-          {/* points + labels */}
-          {pts.map((p, i) => (
-            <motion.g
-              key={p.label}
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ delay: 0.5 + i * 0.35, type: "spring", stiffness: 260, damping: 16 }}
-            >
-              <circle cx={p.x} cy={p.y} r="7" fill="#fdf9f5" stroke="#16120f" strokeWidth="3" />
-              <text
-                x={p.x}
-                y={p.y - 18}
-                textAnchor="middle"
-                className="fill-current font-(family-name:--font-display)"
-                fontSize="17"
-                fontWeight="700"
-              >
-                {format(p.views)}
-              </text>
-              <text
-                x={p.x}
-                y={H - PAD_BOTTOM + 26}
-                textAnchor="middle"
-                fontSize="13"
-                className="fill-current"
-                opacity="0.5"
-              >
-                {p.label}
-              </text>
-            </motion.g>
-          ))}
-        </svg>
+          <motion.line
+            x1={activePoint.x}
+            x2={activePoint.x}
+            y1={PAD_TOP}
+            y2={CHART_BOTTOM}
+            stroke="#16120f"
+            strokeOpacity="0.22"
+            strokeWidth="1.5"
+            strokeDasharray="3 5"
+            animate={{ x1: activePoint.x, x2: activePoint.x }}
+            transition={{ duration: reducedMotion ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
+            aria-hidden
+          />
 
-        {/* a cat proudly sits on the latest data point */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ delay: 1.6, duration: 0.6 }}
-          className="pointer-events-none absolute w-[8%] min-w-10 -translate-x-1/2 -translate-y-full text-ink"
-          style={{ left: `${(last.x / W) * 100}%`, top: `${(last.y / H) * 100 - 9}%` }}
+          {points.map((point, index) => {
+            const showLabel = index % 2 === 0 || index === points.length - 1;
+            const isActive = index === activeIndex;
+            return (
+              <g key={point.label}>
+                <motion.circle
+                  cx={point.x}
+                  cy={point.y}
+                  animate={{ r: isActive ? 7 : 4, fill: isActive ? "#ff3d8f" : "#fdf9f5" }}
+                  transition={{ duration: reducedMotion ? 0 : 0.16 }}
+                  stroke="#16120f"
+                  strokeWidth={isActive ? 3 : 2}
+                  aria-hidden
+                />
+                {showLabel ? (
+                  <text
+                    x={point.x}
+                    y={H - 17}
+                    textAnchor="middle"
+                    fontSize="11"
+                    fill="#79706a"
+                    aria-hidden
+                  >
+                    {point.label.replace(" '26", "")}
+                  </text>
+                ) : null}
+              </g>
+            );
+          })}
+
+          <motion.g
+            animate={{ x: tooltipX, y: tooltipY }}
+            transition={{ duration: reducedMotion ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
+            aria-hidden
+          >
+            <rect width={tooltipWidth} height="52" rx="10" fill="#16120f" />
+            <text x="12" y="20" fontSize="11" fill="#fdf9f5" opacity="0.65">
+              {activePoint.label}
+            </text>
+            <text x="12" y="40" fontSize="17" fontWeight="700" fill="#ff3d8f">
+              {format(activePoint.views)} views
+            </text>
+          </motion.g>
+        </svg>
+        <div
+          className="pointer-events-none absolute bottom-1 left-2 right-2 top-3 md:left-4 md:right-4"
+          role="group"
+          aria-label="Monthly view points"
         >
-          <KawaiiCat variant="sit" className="w-full" />
-        </motion.div>
+          {points.map((point, index) => (
+            <button
+              key={point.label}
+              type="button"
+              aria-label={point.label + ": " + format(point.views) + " views"}
+              aria-pressed={activeIndex === index}
+              onFocus={() => setActiveIndex(index)}
+              onPointerEnter={() => setActiveIndex(index)}
+              onPointerDown={() => setActiveIndex(index)}
+              className="pointer-events-auto absolute size-9 -translate-x-1/2 -translate-y-1/2 cursor-crosshair rounded-full outline-none focus-visible:ring-2 focus-visible:ring-rose focus-visible:ring-offset-2 focus-visible:ring-offset-paper-soft"
+              style={{ left: (point.x / W) * 100 + "%", top: (point.y / H) * 100 + "%" }}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-muted">
+        <p>Hover, tap, or tab through the points to explore.</p>
+        <p className="font-medium text-ink/70">A dip is a beat, not the ending.</p>
       </div>
     </div>
   );

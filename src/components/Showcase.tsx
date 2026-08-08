@@ -5,6 +5,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Reveal from "./Reveal";
 import KawaiiCat from "./KawaiiCat";
 import Boopable from "./Boopable";
+import BrandGallery from "./BrandGallery";
 import { showcase, brandCollabs } from "@/lib/data";
 
 function TiltCard({ item, delay }: { item: (typeof showcase)[number]; delay: number }) {
@@ -99,21 +100,36 @@ export default function Showcase() {
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-rose">
               Trusted by brands
             </p>
-            <p className="text-sm text-muted">
+            <p className="text-right text-sm leading-relaxed text-muted">
               <span className="font-(family-name:--font-display) text-2xl font-extrabold text-ink">
-                80K+
+                15+
               </span>{" "}
-              views across collab content
+              brand collabs
+              <span className="mx-2 text-rose" aria-hidden>&middot;</span>
+              <span className="font-(family-name:--font-display) text-2xl font-extrabold text-ink">
+                150K+
+              </span>{" "}
+              views
             </p>
           </div>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <BrandGallery />
+
+          <div className="mt-8 flex items-center gap-4">
+            <h4 className="font-(family-name:--font-display) text-lg font-bold">
+              Partnership index
+            </h4>
+            <span className="h-0.5 flex-1 bg-ink/10" />
+          </div>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {brandCollabs.map((b) => (
               <a
                 key={b.name}
                 href={b.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col gap-2 rounded-2xl border-2 border-ink/15 px-5 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-rose hover:shadow-[5px_6px_0_0_rgba(255,61,143,0.25)]"
+                className={`group flex flex-col gap-2 rounded-2xl border-2 px-5 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-rose hover:shadow-[5px_6px_0_0_rgba(255,61,143,0.25)] ${
+                  b.reel ? "border-rose/45 bg-blush/45" : "border-ink/15"
+                }`}
               >
                 <span className="flex items-center justify-between gap-3">
                   <span className="font-(family-name:--font-display) text-lg font-bold">
@@ -124,8 +140,8 @@ export default function Showcase() {
                   </span>
                 </span>
                 <span className="text-sm leading-snug text-ink/80">{b.product}</span>
-                <span className="text-xs text-muted transition-colors duration-300 group-hover:text-rose">
-                  {b.handle}
+                <span className="mt-auto pt-1 text-xs font-medium text-muted transition-colors duration-300 group-hover:text-rose">
+                  {b.handle}{b.reel ? " \u2192" : ""}
                 </span>
               </a>
             ))}
