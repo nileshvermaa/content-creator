@@ -11,7 +11,7 @@ export const site = {
   role: "Content Creator & Digital Media Manager",
   tagline: "POV: your brand finally has a story worth watching.",
   location: "Lucknow, India",
-  email: "pragatisrivastava3107@gmail.com",
+  email: "work.pragspov@gmail.com",
   availability: "Open to collaborations & brand partnerships",
 };
 
