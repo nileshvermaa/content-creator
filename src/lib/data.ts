@@ -8,11 +8,22 @@ export const site = {
   name: "Pragati Srivastava",
   firstName: "Pragati",
   lastName: "Srivastava",
-  role: "Content Creator & Digital Media Manager",
+  role: "Content Creator · Digital Marketing · Social Media Executive",
   tagline: "POV: your brand finally has a story worth watching.",
   location: "Lucknow, India",
   email: "work.pragspov@gmail.com",
-  availability: "Open to collaborations & brand partnerships",
+  availability:
+    "Open to Digital Marketing & Social Media Executive roles, and brand collaborations",
+  /** Drop the PDF at public/resume.pdf — the download buttons appear automatically. */
+  resume: "/resume.pdf",
+};
+
+/** Hand-written labels around the hero photo (clockwise from top-left). */
+export const heroLabels = {
+  topLeft: "Digital Marketing",
+  topRight: "Content Creator",
+  bottomRight: "Social Media Executive",
+  bottomLeft: "Based in Lucknow",
 };
 
 export const socials = [
@@ -49,117 +60,112 @@ export const about = {
   philosophy:
     "Great content isn't louder. It's truer. I blend market research, consumer psychology and cinematic storytelling so every post earns its place on the feed.",
   stats: [
-    { value: 3, suffix: "", label: "Industries — fitness, finance & pharma" },
-    { value: 4, suffix: "", label: "Professional certifications" },
-    { value: 2, suffix: "", label: "Platforms, one unmistakable voice" },
+    { value: "60+", label: "Brands collaborated with" },
+    { value: "150K+", label: "Views in the best month" },
+    { value: "3", label: "Industries — fitness, finance & pharma" },
+    { value: "4", label: "Professional certifications" },
   ],
 };
 
 export const experience = [
   {
     period: "May 2026 — Present",
-    role: "Marketing Executive · Full-time",
-    company: "Bhavani Fitness",
-    place: "India",
+    role: "Digital Marketing & Pre-Sales Intern",
+    company: "Bhawani Fitness",
+    place: "New Delhi, India",
     summary:
-      "Now full-time: owning brand-awareness campaigns and the social content engine for the fitness brand — from competitor research and trend-spotting to creative production and KPI reporting.",
-    tags: ["Full-time", "Brand Campaigns", "Social Content", "KPI Tracking"],
+      "Working directly with the CEO on digital marketing and pre-sales strategy across fitness and fertility wellness — 800+ qualified leads generated, lead-to-consultation response rates up 28%, community engagement up 35%, and lead response time cut by 40%.",
+    tags: ["Pre-Sales Funnels", "Lead Generation", "Segmented Campaigns", "Community"],
+    current: true,
+  },
+  {
+    period: "2026 — Present",
+    role: "Brand Collaborations & Digital Campaigns",
+    company: "Independent Digital Creator",
+    place: "Remote",
+    summary:
+      "Conceptualising and executing sponsored campaigns with leading brands including L'Oréal, Nykaa, Aqualogica, BBLUNT and HK Vitals — owning outreach, creative delivery, scheduling and community engagement, then reporting impressions, CTR and reach back to brand partners.",
+    tags: ["Brand Partnerships", "Sponsored Campaigns", "Content", "Reporting"],
     current: true,
   },
   {
     period: "Mar 2026 — May 2026",
     role: "Client Portfolio Management Intern",
     company: "Tradoi Systems Pvt. Ltd.",
-    place: "Noida, India",
+    place: "Lucknow, India",
     summary:
-      "Managed and maintained client portfolios with accurate, up-to-date records — building client relationships, coordinating with internal teams on queries, and preparing client-facing performance reports in a fast-paced environment.",
-    tags: ["Client Relations", "Portfolio Management", "Reporting", "Communication"],
+      "Managed strategic client portfolios by mapping business requirements and tracking account health — holding a 95%+ client satisfaction rate and cutting query resolution turnaround by 30% through structured CRM interaction logs.",
+    tags: ["Client Relations", "Portfolio Management", "CRM", "Retention"],
   },
   {
     period: "Dec 2025 — Feb 2026",
-    role: "Social Media Marketing Intern",
+    role: "Social Media Marketing & Market Research Intern",
     company: "Synova Financial Services",
     place: "Lucknow, India",
     summary:
-      "Turned data into stories for a financial services brand — content aligned to business goals, competitor benchmarking, and campaign execution across multiple digital channels.",
-    tags: ["Content Strategy", "Data Analysis", "Campaign Planning", "Reporting"],
+      "Benchmarked 10+ financial-services competitors to uncover consumer pain points and shape messaging, turning quantitative and qualitative data into business summaries that lifted social media reach by 22%.",
+    tags: ["Market Research", "Competitor Benchmarking", "Social Media", "Reporting"],
   },
   {
     period: "Aug 2023 — Sep 2023",
-    role: "Operations & Marketing Trainee",
+    role: "Marketing & Operations Trainee",
     company: "East African (India) Overseas",
     place: "Dehradun, India",
     summary:
-      "Cross-functional exposure inside a pharmaceutical business — content creation, campaign support, consumer research, and operational coordination with senior teams.",
-    tags: ["Content Creation", "Consumer Research", "Operations"],
+      "Supported cross-functional teams with pharmaceutical market research, campaign documentation and product positioning analysis in healthcare manufacturing.",
+    tags: ["Market Research", "Campaign Support", "Product Positioning"],
   },
 ];
 
-export const showcase = [
+/** Academic & strategy projects. */
+export const projects = [
   {
-    index: "01",
-    platform: "Instagram",
-    title: "pragspov_",
-    description:
-      "POV-first lifestyle storytelling. Everyday moments reframed through a cinematic lens — reels, carousels and captions built to stop the scroll.",
-    href: "https://www.instagram.com/pragspov_",
-    cta: "Watch the feed",
-    accent: "from-pink-500 via-fuchsia-500 to-violet-500",
-  },
-  {
-    index: "02",
-    platform: "YouTube",
-    title: "palakunfiltered26",
-    description:
-      "Long-form, unfiltered stories. Vlogs and sit-downs where the edit serves the emotion — honest content that builds community, not just views.",
-    href: "https://youtube.com/@palakunfiltered26",
-    cta: "Press play",
-    accent: "from-red-500 via-orange-500 to-amber-400",
-  },
-  {
-    index: "03",
-    platform: "Brand Strategy",
     title: "ZARA vs H&M — Brand Wars",
     description:
       "A deep-dive competitive study of two fast-fashion giants — positioning, the 4Ps, digital strategy and sustainability — distilled into a 10-page strategic playbook.",
     href: "https://www.linkedin.com/in/pragatisrivastava3107",
     cta: "Read the case",
-    accent: "from-violet-500 via-purple-500 to-indigo-400",
   },
 ];
 
+/** Core competencies, as on the résumé. */
 export const skills = [
   {
-    group: "Create",
+    group: "Brand",
     items: [
-      "Content Creation",
-      "Social Media Marketing",
-      "Campaign Management",
-      "Digital Marketing",
-      "Canva",
-      "Brand Management",
+      "Brand Positioning & Messaging",
+      "Competitive Benchmarking",
+      "Consumer Insights & Market Research",
+      "4Ps Marketing Mix",
+      "Brand Partnerships",
+      "Go-to-Market Strategy",
     ],
   },
   {
-    group: "Analyse",
+    group: "Digital",
     items: [
-      "Market Research",
-      "Competitive Analysis",
-      "Data Visualization",
-      "Consumer Behavior",
-      "MS Excel",
-      "HR Analytics",
+      "Performance Marketing Fundamentals",
+      "Multi-Channel Campaign Management",
+      "Pre-Sales Outreach & Funnel Optimisation",
+      "Lead Generation",
+      "Audience Segmentation",
+      "Social Media Strategy",
+      "CRM & Retention",
     ],
   },
   {
-    group: "Connect",
+    group: "Tools",
+    items: ["Meta Ads", "MS Excel", "PowerPoint", "Canva", "CRM Systems", "Data Visualisation"],
+  },
+  {
+    group: "Creative",
     items: [
+      "Content Marketing Strategy",
+      "Campaign Copywriting",
       "Storytelling",
-      "Stakeholder Communication",
-      "Employee Engagement",
-      "Team Collaboration",
-      "Leadership",
-      "Cross-functional Coordination",
+      "Creative Direction",
+      "Community Engagement",
+      "Video Editing",
     ],
   },
 ];
@@ -167,7 +173,7 @@ export const skills = [
 export const education = [
   {
     period: "2025 — 2027",
-    degree: "MBA — HR & Marketing",
+    degree: "MBA — Marketing & HR",
     school: "Indian Institute of Technology (IIT) Patna",
   },
   {
@@ -267,75 +273,39 @@ export const instagramReels: {
   },
 ];
 
+/** Headline number for the brands section. */
+export const brandCount = "60+";
+
 /**
- * Brand collaborations & partnerships. Each card shows the product(s)
- * received and links to the brand's page. Add new collabs at the top.
+ * Brand collaborations. Add new ones at the top.
+ * `times` marks a brand worked with more than once (shown as ★ ×N).
+ * `href` is optional — a reel or the brand's page.
  */
-export const brandCollabs = [
-  {
-    name: "BBLUNT",
-    handle: "Watch collaboration",
-    href: "https://www.instagram.com/reel/DbTaIWdiom-/",
-    product: "Featured Instagram reel",
-    reel: true,
-  },
-  {
-    name: "The Derma Co",
-    handle: "Watch collaboration",
-    href: "https://www.instagram.com/reel/DbWAB0ti2S0/",
-    product: "Featured Instagram reel",
-    reel: true,
-  },
-  {
-    name: "Pilgrim",
-    handle: "Watch collaboration",
-    href: "https://www.instagram.com/reel/DbSL3uSCvMY/",
-    product: "Featured Instagram reel",
-    reel: true,
-  },
-  {
-    name: "Caredale",
-    handle: "Watch collaboration",
-    href: "https://www.instagram.com/reel/DbKcUchiRrk/",
-    product: "Featured Instagram reel",
-    reel: true,
-  },
-  {
-    name: "Fiama",
-    handle: "@fiamaindia",
-    href: "https://www.instagram.com/fiamaindia",
-    product: "Hokkaido Milk Bar · Niacinamide Scrub",
-  },
-  {
-    name: "Himalayan Organics",
-    handle: "@the_himalayan_organics",
-    href: "https://www.instagram.com/the_himalayan_organics",
-    product: "Biotin · L-Carnitine · Vitamin B12",
-  },
-  {
-    name: "Bentica",
-    handle: "@bentica.skincare",
-    href: "https://www.instagram.com/bentica.skincare",
-    product: "Matcha Mellow Mask",
-  },
-  {
-    name: "Rosaa",
-    handle: "@rosaa.in",
-    href: "https://www.instagram.com/rosaa.in",
-    product: "Rose Water — set of 2",
-  },
-  {
-    name: "oBuddy",
-    handle: "@obuddy.in",
-    href: "https://www.instagram.com/obuddy.in",
-    product: "Brand partnership",
-  },
-  {
-    name: "Dot & Key",
-    handle: "@dotandkey.skincare",
-    href: "https://www.instagram.com/dotandkey.skincare",
-    product: "Skincare unboxing reel",
-  },
+export const brands: { name: string; note: string; href?: string; times?: number }[] = [
+  { name: "BlaBliBlu", note: "Three collaborations", times: 3 },
+  { name: "Aqualogica", note: "Three collaborations", times: 3 },
+  { name: "HK Vitals", note: "Two collaborations", times: 2 },
+  { name: "Nykaa", note: "Brand collaboration" },
+  { name: "L'Oréal", note: "Brand collaboration" },
+  { name: "Mamaearth", note: "Brand collaboration" },
+  { name: "P&G", note: "Brand collaboration" },
+  { name: "Engage", note: "Brand collaboration" },
+  { name: "MyFitness", note: "Brand collaboration" },
+  { name: "Epiiglobal", note: "International PR" },
+  { name: "BBLUNT", note: "Hair care · Instagram reel", href: "https://www.instagram.com/reel/DbTaIWdiom-/" },
+  { name: "The Derma Co", note: "Body care & sunscreen · reel", href: "https://www.instagram.com/reel/DbWAB0ti2S0/" },
+  { name: "Pilgrim", note: "Hair growth serum · reel", href: "https://www.instagram.com/reel/DbSL3uSCvMY/" },
+  { name: "Caredale", note: "Collaboration package · reel", href: "https://www.instagram.com/reel/DbKcUchiRrk/" },
+  { name: "Dot & Key", note: "Skincare unboxing reel", href: "https://www.instagram.com/dotandkey.skincare" },
+  { name: "Fiama", note: "Hokkaido Milk Bar · Niacinamide Scrub", href: "https://www.instagram.com/fiamaindia" },
+  { name: "Himalayan Organics", note: "Biotin · L-Carnitine · Vitamin B12", href: "https://www.instagram.com/the_himalayan_organics" },
+  { name: "Bentica", note: "Matcha Mellow Mask", href: "https://www.instagram.com/bentica.skincare" },
+  { name: "Rosaa", note: "Rose Water — set of 2", href: "https://www.instagram.com/rosaa.in" },
+  { name: "oBuddy", note: "Brand partnership", href: "https://www.instagram.com/obuddy.in" },
+  { name: "Dr. Sheth's", note: "Skin care serum" },
+  { name: "WishCare", note: "Hair growth concentrate" },
+  { name: "Joy", note: "Face care collection" },
+  { name: "DeoDap", note: "Lifestyle collection" },
 ];
 
 /**
