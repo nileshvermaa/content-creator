@@ -42,7 +42,7 @@ export default function InstagramEmbed({ url, label }: { url: string; label: str
   }, [url]);
 
   return (
-    <div className="relative min-h-[32rem] w-full overflow-hidden rounded-xl bg-blush/45">
+    <div className="relative min-h-[32rem] w-full overflow-hidden rounded-sm bg-blush/45">
       <a
         href={url}
         target="_blank"

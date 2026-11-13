@@ -134,7 +134,7 @@ export default function BrandGallery() {
 
   return (
     <>
-      <div className="mt-8 flex items-end justify-between gap-5">
+      <div className="mt-20 flex items-end justify-between gap-5">
         <div>
           <h3 className="font-(family-name:--font-display) text-2xl font-bold md:text-3xl">
             The PR shelf
@@ -181,7 +181,7 @@ export default function BrandGallery() {
             }`}
           >
             <figure>
-              <div className="relative aspect-[9/16] overflow-hidden rounded-2xl border-[3px] border-ink bg-paper">
+              <div className="relative aspect-[9/16] overflow-hidden rounded-sm border-[3px] border-ink bg-paper">
                 <Image
                   src={still.image}
                   alt={still.alt}
@@ -219,7 +219,7 @@ export default function BrandGallery() {
         }}
         className="m-auto max-h-[94vh] max-w-[94vw] bg-transparent p-0 backdrop:bg-ink/85"
       >
-        <div className="relative w-[min(88vw,32rem)] overflow-hidden rounded-2xl border-[3px] border-ink bg-paper shadow-[10px_12px_0_0_rgba(255,61,143,0.55)]">
+        <div className="relative w-[min(88vw,32rem)] overflow-hidden rounded-sm border-[3px] border-ink bg-paper shadow-[10px_12px_0_0_rgba(123,19,34,0.55)]">
           <div className="relative h-[72vh] min-h-[28rem] bg-paper-soft">
             <Image
               src={activeStill.image}

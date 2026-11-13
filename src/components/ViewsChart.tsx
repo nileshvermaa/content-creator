@@ -81,7 +81,7 @@ export default function ViewsChart() {
   const bestMonth = Math.max(...viewsTrend.map((item) => item.views));
 
   return (
-    <div className="relative mt-8 rounded-3xl border-[3px] border-ink bg-paper p-6 md:p-10">
+    <div className="relative mt-8 rounded-md border-[3px] border-ink bg-paper p-6 text-ink md:p-10">
       <div className="flex flex-wrap items-end justify-between gap-5">
         <div>
           <h4 className="font-(family-name:--font-display) text-xl font-bold tracking-tight md:text-2xl">
@@ -99,7 +99,7 @@ export default function ViewsChart() {
         </div>
       </div>
 
-      <div className="relative mt-7 overflow-hidden rounded-2xl bg-paper-soft/55 px-2 pb-1 pt-3 md:px-4">
+      <div className="relative mt-7 overflow-hidden rounded-sm bg-paper-soft/55 px-2 pb-1 pt-3 md:px-4">
         <svg
           viewBox={"0 0 " + W + " " + H}
           className="w-full touch-pan-y"
@@ -109,8 +109,8 @@ export default function ViewsChart() {
         >
           <defs>
             <linearGradient id="views-area-fill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#ff3d8f" stopOpacity="0.28" />
-              <stop offset="100%" stopColor="#ff3d8f" stopOpacity="0" />
+              <stop offset="0%" stopColor="#7b1322" stopOpacity="0.28" />
+              <stop offset="100%" stopColor="#7b1322" stopOpacity="0" />
             </linearGradient>
           </defs>
 
@@ -148,7 +148,7 @@ export default function ViewsChart() {
           <motion.path
             d={line}
             fill="none"
-            stroke="#ff3d8f"
+            stroke="#7b1322"
             strokeWidth="4"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -181,7 +181,7 @@ export default function ViewsChart() {
                 <motion.circle
                   cx={point.x}
                   cy={point.y}
-                  animate={{ r: isActive ? 7 : 4, fill: isActive ? "#ff3d8f" : "#fdf9f5" }}
+                  animate={{ r: isActive ? 7 : 4, fill: isActive ? "#7b1322" : "#fdf9f5" }}
                   transition={{ duration: reducedMotion ? 0 : 0.16 }}
                   stroke="#16120f"
                   strokeWidth={isActive ? 3 : 2}
@@ -212,7 +212,7 @@ export default function ViewsChart() {
             <text x="12" y="20" fontSize="11" fill="#fdf9f5" opacity="0.65">
               {activePoint.label}
             </text>
-            <text x="12" y="40" fontSize="17" fontWeight="700" fill="#ff3d8f">
+            <text x="12" y="40" fontSize="17" fontWeight="700" fill="#efc3b3">
               {format(activePoint.views)} views
             </text>
           </motion.g>

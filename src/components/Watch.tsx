@@ -4,9 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import Reveal from "./Reveal";
 import SocialIcon from "./SocialIcons";
-import KawaiiCat from "./KawaiiCat";
 import ViewsChart from "./ViewsChart";
-import CatFact from "./CatFact";
+import SectionHead from "./SectionHead";
 import InstagramEmbed from "./InstagramEmbed";
 import { socials, youtubeShorts, instagramReels } from "@/lib/data";
 
@@ -31,8 +30,8 @@ function RailHeader({
 }) {
   return (
     <div className="mt-20 flex items-center justify-between gap-4">
-      <h3 className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.35em] text-ink">
-        <span className="flex size-8 items-center justify-center rounded-full bg-ink text-paper">
+      <h3 className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.35em] text-paper">
+        <span className="flex size-8 items-center justify-center rounded-full bg-paper text-rose">
           <SocialIcon name={icon} className="size-4" />
         </span>
         {title}
@@ -41,7 +40,7 @@ function RailHeader({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-xs font-semibold uppercase tracking-[0.2em] text-muted transition-colors duration-300 hover:text-rose"
+        className="text-xs font-semibold uppercase tracking-[0.2em] text-paper/70 transition-colors duration-300 hover:text-paper"
       >
         {linkLabel} →
       </a>
@@ -55,7 +54,7 @@ function ShortCard({ short, delay }: { short: (typeof youtubeShorts)[number]; de
 
   return (
     <Reveal delay={delay}>
-      <figure className="group relative aspect-[9/16] overflow-hidden rounded-3xl border-[3px] border-ink bg-ink">
+      <figure className="group relative aspect-[9/16] overflow-hidden rounded-md border-[3px] border-ink bg-ink">
         {playing ? (
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${short.id}?autoplay=1&playsinline=1&rel=0`}
@@ -82,7 +81,7 @@ function ShortCard({ short, delay }: { short: (typeof youtubeShorts)[number]; de
             <span className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/90 to-transparent" />
 
             {/* play button */}
-            <span className="absolute left-1/2 top-1/2 flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[3px] border-ink bg-paper transition-all duration-300 group-hover:scale-110 group-hover:bg-rose group-hover:text-paper">
+            <span className="absolute left-1/2 top-1/2 flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[3px] border-ink bg-paper text-ink transition-all duration-300 group-hover:scale-110 group-hover:bg-rose group-hover:text-paper">
               <svg viewBox="0 0 24 24" fill="currentColor" className="size-6 translate-x-0.5">
                 <path d="M8 5.14v13.72L19 12 8 5.14Z" />
               </svg>
@@ -114,7 +113,7 @@ function ReelCard({ reel, delay }: { reel: (typeof instagramReels)[number]; dela
       delay={delay}
       className="h-full w-[82vw] max-w-sm shrink-0 snap-start sm:w-[46vw] lg:w-auto lg:max-w-none"
     >
-      <figure className="flex h-full flex-col overflow-hidden rounded-3xl border-[3px] border-ink bg-paper">
+      <figure className="flex h-full flex-col overflow-hidden rounded-md border-[3px] border-ink bg-paper text-ink">
         {reel.tag && (
           <figcaption className="flex items-center gap-2 bg-rose px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-paper">
             <SocialIcon name="Instagram" className="size-3.5" />
@@ -155,14 +154,14 @@ function FollowCard({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative flex aspect-[9/16] flex-col items-center justify-center gap-5 overflow-hidden rounded-3xl border-[3px] border-ink bg-ink p-8 text-center text-paper transition-all duration-500 hover:bg-rose"
+        className="group relative flex aspect-[9/16] flex-col items-center justify-center gap-5 overflow-hidden rounded-md border-[3px] border-ink bg-ink p-8 text-center text-paper transition-all duration-500 hover:bg-paper hover:text-ink"
       >
         <SocialIcon name={icon} className="size-10" />
         <span>
           <span className="font-(family-name:--font-display) block text-xl font-bold">{handle}</span>
-          <span className="mt-2 block text-sm text-paper/70">{line}</span>
+          <span className="mt-2 block text-sm opacity-70">{line}</span>
         </span>
-        <span className="rounded-full border-2 border-paper/40 px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] transition-colors duration-300 group-hover:border-paper">
+        <span className="rounded-full border-2 border-current px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em]">
           Follow →
         </span>
       </a>
@@ -172,17 +171,15 @@ function FollowCard({
 
 export default function Watch() {
   return (
-    <section id="watch" className="relative border-y-[3px] border-ink bg-blush/40">
-      <div className="mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-40">
+    <section id="watch" className="torn-top torn-bottom my-8 bg-rose text-paper">
+      <div className="mx-auto max-w-6xl px-6 py-24 md:px-10 md:py-32">
         <Reveal>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-rose">
-            04 — Now Streaming
-          </p>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <h2 className="font-(family-name:--font-display) max-w-3xl text-4xl font-bold leading-tight tracking-tight md:text-6xl">
-            Don&apos;t take my word for it — <span className="text-gradient">press play.</span>
-          </h2>
+          <SectionHead
+            light
+            kicker="Social media showcase"
+            title="now showing"
+            hand="don't take my word for it — press play"
+          />
         </Reveal>
 
         {/* Instagram rail — the main stage */}
@@ -209,7 +206,7 @@ export default function Watch() {
             />
           </div>
         </div>
-        <p className="mt-3 text-xs text-muted lg:hidden">
+        <p className="mt-3 text-xs text-paper/70 lg:hidden">
           Swipe to explore all collaborations
         </p>
 
@@ -235,20 +232,6 @@ export default function Watch() {
 
         {/* growth chart */}
         <ViewsChart />
-
-        {/* live cat-fact intermission */}
-        <CatFact />
-
-        {/* a paw-print trail wanders off the section */}
-        <div className="mt-10 flex items-center gap-3 opacity-30" aria-hidden>
-          {[0, 1, 2, 3, 4].map((i) => (
-            <KawaiiCat
-              key={i}
-              variant="paw"
-              className={`size-4 text-ink ${i % 2 ? "translate-y-1 rotate-12" : "-rotate-6"}`}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );

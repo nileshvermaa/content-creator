@@ -1,45 +1,38 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ── palette: white · pink · black ─────────────────────── */
-  --color-paper: #fdf9f5;
-  --color-paper-soft: #f6efe8;
-  --color-ink: #16120f;
-  --color-line: rgba(22, 18, 15, 0.12);
-  --color-muted: #79706a;
-  --color-rose: #ff3d8f;
-  --color-rose-deep: #d61f73;
-  --color-blush: #ffe3f0;
-
-  /* legacy aliases kept so old class names keep working */
-  --color-cream: #fdf9f5;
-  --color-ink-soft: #f6efe8;
+  /* ── palette: paper · oxblood · ink ────────────────────
+     Token names are kept from the old theme (rose = the accent)
+     so existing class names keep working. */
+  --color-paper: #efe8da;
+  --color-paper-soft: #e5dbc8;
+  --color-ink: #1d1512;
+  --color-line: rgba(29, 21, 18, 0.2);
+  --color-muted: #6a5d54;
+  --color-rose: #7b1322;
+  --color-rose-deep: #560b15;
+  --color-blush: #dccbb3;
 
   /* ── type ──────────────────────────────────────────────── */
-  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-body: var(--font-lora), Georgia, serif;
+  --font-poster: var(--font-abril), Georgia, serif;
+  --font-label: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-hand: var(--font-caveat), cursive;
+  --font-script: var(--font-pinyon), cursive;
 
   /* ── motion ────────────────────────────────────────────── */
-  --animate-marquee: marquee 28s linear infinite;
-  --animate-marquee-reverse: marquee-reverse 32s linear infinite;
-  --animate-wiggle: wiggle 2.4s ease-in-out infinite;
+  --animate-marquee: marquee 36s linear infinite;
 
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
   }
-  @keyframes marquee-reverse {
-    from { transform: translateX(-50%); }
-    to { transform: translateX(0); }
-  }
-  @keyframes wiggle {
-    0%, 100% { transform: rotate(-4deg); }
-    50% { transform: rotate(4deg); }
-  }
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
   overflow-x: clip;
 }
 
@@ -64,7 +57,6 @@ body {
   color: var(--color-paper);
 }
 
-/* thin elegant scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -72,56 +64,136 @@ body {
   background: var(--color-paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(22, 18, 15, 0.25);
+  background: rgba(29, 21, 18, 0.3);
   border-radius: 999px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-rose);
+  outline-offset: 3px;
 }
 
 /* ── reusable pieces ─────────────────────────────────────── */
 
-.text-gradient {
-  background: linear-gradient(110deg, #ff3d8f 10%, #d61f73 55%, #16120f 110%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.glass {
-  background: rgba(253, 249, 245, 0.7);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(22, 18, 15, 0.1);
-}
-
-/* film grain over everything — printed-paper feel */
+/* paper grain over everything */
 .grain::after {
   content: "";
   position: fixed;
-  inset: -100%;
+  inset: 0;
   z-index: 80;
   pointer-events: none;
-  opacity: 0.045;
+  opacity: 0.09;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: grain-shift 0.9s steps(4) infinite;
 }
 
-@keyframes grain-shift {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(-2%, 3%); }
-  50% { transform: translate(3%, -2%); }
-  75% { transform: translate(-3%, -3%); }
-  100% { transform: translate(2%, 2%); }
+/* small uppercase label */
+.kicker {
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
 }
 
-/* outlined display text (poster backdrop words) */
-.text-stroke {
-  -webkit-text-stroke: 1.5px rgba(22, 18, 15, 0.16);
-  color: transparent;
+/* collage cut-outs (white-background JPGs): multiply drops the white onto the paper.
+   Only works on light sections. */
+.decor {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  mix-blend-mode: multiply;
+}
+
+/* Victorian fleuron divider */
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-rose);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.ornament::before,
+.ornament::after {
+  content: "";
+  flex: 1;
+  height: 5px;
+  border-top: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+}
+
+/* torn paper edge: put on a block that sits on a different background */
+.torn-top,
+.torn-bottom {
+  --torn: polygon(
+    0 100%, 0 38%, 3% 52%, 6% 30%, 9% 55%, 13% 34%, 16% 60%, 20% 28%, 24% 50%,
+    27% 22%, 31% 58%, 35% 36%, 38% 62%, 42% 30%, 46% 54%, 49% 26%, 53% 48%,
+    57% 20%, 60% 56%, 64% 32%, 68% 60%, 71% 28%, 75% 50%, 79% 24%, 82% 58%,
+    86% 34%, 89% 56%, 93% 26%, 96% 50%, 100% 30%, 100% 100%
+  );
+  position: relative;
+}
+.torn-top::before,
+.torn-bottom::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 26px;
+  background: inherit;
+  clip-path: var(--torn);
+}
+.torn-top::before {
+  bottom: calc(100% - 1px);
+}
+.torn-bottom::after {
+  top: calc(100% - 1px);
+  transform: scaleY(-1);
+}
+
+/* scrapbook photo */
+.polaroid {
+  background: #fbf8f1;
+  padding: 0.75rem 0.75rem 3.25rem;
+  box-shadow:
+    0 1px 2px rgba(29, 21, 18, 0.25),
+    0 18px 40px -12px rgba(29, 21, 18, 0.45);
+}
+
+/* strip of masking tape */
+.tape {
+  position: absolute;
+  width: 7rem;
+  height: 1.75rem;
+  background: rgba(220, 203, 179, 0.85);
+  box-shadow: 0 1px 3px rgba(29, 21, 18, 0.2);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 2px solid var(--color-ink);
+  padding: 0.8rem 1.5rem;
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: all 0.25s;
+  box-shadow: 4px 4px 0 0 var(--color-ink);
+}
+.btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--color-ink);
+}
+.btn-solid {
+  background: var(--color-rose);
+  color: var(--color-paper);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .grain::after {
-    animation: none;
-  }
   *,
   *::before,
   *::after {

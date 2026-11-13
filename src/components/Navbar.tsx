@@ -1,45 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
 import { site } from "@/lib/data";
 
 const links = [
   { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Work", href: "#work" },
+  { label: "Résumé", href: "#resume" },
+  { label: "Brands", href: "#brands" },
   { label: "Watch", href: "#watch" },
-  { label: "Skills", href: "#skills" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4"
-    >
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-ink bg-paper/95 backdrop-blur">
       <nav
-        className={`flex w-full max-w-5xl items-center justify-between rounded-full px-6 py-3 transition-all duration-500 ${
-          scrolled ? "glass shadow-lg shadow-ink/5" : ""
-        }`}
+        aria-label="Main"
+        className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 md:px-10"
       >
-        <a
-          href="#home"
-          className="font-(family-name:--font-display) text-lg font-bold tracking-tight"
-        >
-          Prags<span className="text-rose">.</span>pov
+        <a href="#home" className="font-display text-xl font-black italic">
+          {site.firstName}
+          <span className="text-rose">.</span>
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">
@@ -47,7 +30,7 @@ export default function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-sm text-muted transition-colors duration-300 hover:text-ink"
+                className="kicker underline decoration-1 underline-offset-[6px] transition-colors hover:text-rose"
               >
                 {l.label}
               </a>
@@ -55,63 +38,39 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-3">
-          <a
-            href="#contact"
-            className="hidden rounded-full bg-ink px-5 py-2 text-sm font-semibold text-paper transition-all duration-300 hover:bg-rose md:block"
-          >
-            Let&apos;s talk
-          </a>
-          {/* mobile toggle */}
-          <button
-            aria-label="Toggle menu"
-            onClick={() => setOpen((v) => !v)}
-            className="flex size-10 flex-col items-center justify-center gap-1.5 rounded-full border border-line bg-paper/70 md:hidden"
-          >
-            <span
-              className={`block h-px w-4 bg-ink transition-transform duration-300 ${open ? "translate-y-[3.5px] rotate-45" : ""}`}
-            />
-            <span
-              className={`block h-px w-4 bg-ink transition-transform duration-300 ${open ? "-translate-y-[3.5px] -rotate-45" : ""}`}
-            />
-          </button>
-        </div>
+        <a
+          href={`mailto:${site.email}`}
+          className="kicker hidden bg-ink px-4 py-2.5 text-paper transition-colors hover:bg-rose md:block"
+        >
+          Hire me
+        </a>
+
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          onClick={() => setOpen((v) => !v)}
+          className="kicker border border-ink px-3 py-2 md:hidden"
+        >
+          {open ? "Close" : "Menu"}
+        </button>
       </nav>
 
-      {/* mobile sheet */}
       {open && (
-        <motion.div
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="glass absolute inset-x-4 top-20 rounded-3xl p-6 md:hidden"
-        >
-          <ul className="flex flex-col gap-4">
-            {links.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="font-(family-name:--font-display) text-2xl font-semibold"
-                >
-                  {l.label}
-                </a>
-              </li>
-            ))}
-            <li>
+        <ul id="mobile-menu" className="border-t border-ink px-6 py-4 md:hidden">
+          {links.map((l) => (
+            <li key={l.href} className="border-b border-line last:border-0">
               <a
-                href="#contact"
+                href={l.href}
                 onClick={() => setOpen(false)}
-                className="font-(family-name:--font-display) text-2xl font-semibold text-rose"
+                className="block py-3 font-display text-2xl font-bold"
               >
-                Let&apos;s talk
+                {l.label}
               </a>
             </li>
-          </ul>
-          <p className="mt-6 text-xs uppercase tracking-[0.25em] text-muted">
-            {site.availability}
-          </p>
-        </motion.div>
+          ))}
+        </ul>
       )}
-    </motion.header>
+    </header>
   );
 }

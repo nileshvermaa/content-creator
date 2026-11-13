@@ -1,33 +1,46 @@
 import type { Metadata } from "next";
-import { Syne, Inter } from "next/font/google";
+import {
+  Playfair_Display,
+  EB_Garamond,
+  Poppins,
+  Caveat,
+  Abril_Fatface,
+  Pinyon_Script,
+} from "next/font/google";
 import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
 
-const syne = Syne({
-  variable: "--font-syne",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  style: ["normal", "italic"],
 });
-
-const inter = Inter({
-  variable: "--font-inter",
+const garamond = EB_Garamond({ variable: "--font-lora", subsets: ["latin"] });
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["500", "600"],
 });
+const abril = Abril_Fatface({ variable: "--font-abril", subsets: ["latin"], weight: "400" });
+const pinyon = Pinyon_Script({ variable: "--font-pinyon", subsets: ["latin"], weight: "400" });
+const caveat = Caveat({ variable: "--font-caveat", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Pragati Srivastava — Content Creator & Digital Media Manager",
+  title: "Pragati Srivastava — Content Creator & Social Media Executive",
   description:
-    "POV-first storytelling, social media strategy and digital media management. Pragati Srivastava blends cinematic content with data-driven marketing across fitness, finance and pharma.",
+    "Portfolio and résumé of Pragati Srivastava — content creator and digital marketer from Lucknow with 60+ brand collaborations, blending POV-first storytelling with data-driven social media strategy.",
   keywords: [
     "Pragati Srivastava",
     "Content Creator",
-    "Digital Media Manager",
+    "Digital Marketing",
+    "Social Media Executive",
     "Social Media Marketing",
+    "Lucknow",
     "pragspov",
   ],
   openGraph: {
-    title: "Pragati Srivastava — Content Creator & Digital Media Manager",
+    title: "Pragati Srivastava — Content Creator & Social Media Executive",
     description:
       "POV: your brand finally has a story worth watching. Cinematic content, data-driven strategy.",
     type: "website",
@@ -35,7 +48,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pragati Srivastava — Content Creator & Digital Media Manager",
+    title: "Pragati Srivastava — Content Creator & Social Media Executive",
     description: "POV: your brand finally has a story worth watching.",
     images: ["/pragati.jpg"],
   },
@@ -47,8 +60,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${inter.variable} antialiased`}>
-      <body className="grain">{children}</body>
+    <html lang="en" className={`${playfair.variable} ${garamond.variable} ${poppins.variable} ${caveat.variable} ${abril.variable} ${pinyon.variable} antialiased`}>
+      <body className="grain text-[1.08rem]">{children}</body>
     </html>
   );
 }

@@ -1,142 +1,120 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { site, socials } from "@/lib/data";
-import SocialIcon from "./SocialIcons";
-import Boopable from "./Boopable";
-import PeekFollowCat from "./PeekFollowCat";
+import { site, heroLabels } from "@/lib/data";
+import { hasResume } from "@/lib/resume";
 
-const ease = [0.22, 1, 0.36, 1] as const;
+/** Hand-drawn curly arrow. Drawn pointing up-left; flipped with CSS for the other corners. */
+function Arrow({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 120 60"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      className={`hidden w-24 shrink-0 text-rose md:block lg:w-32 ${className}`}
+    >
+      <path d="M116 50C92 54 70 44 66 30c-3-11 10-17 15-8 5 10-9 20-26 16C40 35 24 26 8 12" />
+      <path d="M22 8 7 11l5 15" />
+    </svg>
+  );
+}
+
+const labelBase =
+  "flex items-center justify-center gap-2 font-hand text-2xl leading-none text-ink md:text-4xl lg:text-[2.6rem]";
 
 export default function Hero() {
   return (
-    <section
-      id="home"
-      className="relative flex min-h-screen flex-col overflow-hidden bg-paper"
-    >
-      {/* soft pink wash corners */}
-      <div className="pointer-events-none absolute -left-32 -top-32 size-96 rounded-full bg-blush blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-40 -right-32 size-[28rem] rounded-full bg-blush blur-3xl" />
+    <header id="home" className="relative overflow-hidden px-6 pb-20 pt-24 md:px-10 md:pb-28">
+      {/* collage: crumpled newspaper in the corner, a street lamp on the ground line */}
+      <Image
+        src="/decor/newspaper.jpg"
+        alt=""
+        width={736}
+        height={952}
+        priority
+        className="decor -right-6 top-10 w-28 sm:w-64 lg:w-[22rem]"
+      />
+      <Image
+        src="/decor/lamp.jpg"
+        alt=""
+        width={503}
+        height={1038}
+        className="decor -bottom-2 left-2 hidden w-40 lg:block xl:left-[4%] xl:w-48"
+      />
 
-      {/* poster corner credits */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.8 }}
-        className="absolute left-6 top-24 text-xs font-semibold tracking-[0.3em] text-muted md:left-10 md:top-28"
-      >
-        ©2026
-      </motion.p>
+      <div className="relative mx-auto max-w-6xl">
+        <div className="kicker flex gap-8 border-t border-ink pt-3 text-muted">
+          <span>{site.location}</span>
+          <span className="text-rose">Open to work</span>
+        </div>
 
-      {/* center stage: giant word + photo on top */}
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-4 pt-24 md:pt-20">
-        <div className="relative flex w-full items-center justify-center">
-          {/* the giant word */}
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.1, delay: 0.35, ease }}
-            className="font-(family-name:--font-display) select-none whitespace-nowrap text-center text-[10vw] font-extrabold leading-none tracking-[-0.05em] text-rose md:text-[11.5vw]"
-          >
-            P<span className="text-ink">O</span>RTF<span className="text-ink">O</span>LIO
-          </motion.h1>
+        <p className="mt-10 -rotate-2 text-center font-script text-4xl md:text-7xl">
+          Hi, I&apos;m {site.firstName} —
+        </p>
+        <h1 className="text-center font-poster text-[clamp(4.2rem,21vw,17rem)] lowercase leading-[0.85] tracking-[-0.03em] text-rose">
+          <span className="sr-only">{site.name} — </span>
+          portfolio
+        </h1>
 
-          {/* her photo, in front of the middle letters */}
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.65, ease }}
-            className="absolute left-1/2 top-1/2 w-[31vw] min-w-48 max-w-72 -translate-x-1/2 -translate-y-1/2"
-          >
-            {/* cat peeking over the frame — its eyes follow your cursor */}
-            <div className="absolute -top-8 right-6 z-10 w-16 md:-top-10 md:w-20">
-              <Boopable>
-                <PeekFollowCat className="w-full text-ink" />
-              </Boopable>
-            </div>
-            <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border-[3px] border-ink bg-paper shadow-[10px_12px_0_0_rgba(255,61,143,0.35)]">
+        {/* photo in the middle, a handwritten label off each corner */}
+        <div className="relative mx-auto mt-6 grid max-w-5xl grid-cols-2 gap-x-4 gap-y-4 md:-mt-[4vw] md:grid-cols-[1fr_auto_1fr] md:grid-rows-2 md:gap-x-3 md:gap-y-24">
+          <figure className="polaroid relative col-span-2 w-[min(74vw,21rem)] rotate-2 justify-self-center md:col-span-1 md:col-start-2 md:row-span-2 md:row-start-1">
+            <span className="tape -top-3 left-1/2 -translate-x-1/2 -rotate-3" aria-hidden />
+            <div className="relative aspect-[3/4] overflow-hidden">
               <Image
                 src="/pragati.jpg"
-                alt="Pragati Srivastava"
+                alt="Pragati Srivastava smiling at a café table in Lucknow"
                 fill
                 priority
-                sizes="(min-width: 768px) 288px, 50vw"
+                sizes="(min-width: 768px) 336px, 74vw"
                 className="object-cover"
               />
             </div>
-          </motion.div>
+            <figcaption className="absolute inset-x-0 bottom-2.5 text-center font-hand text-2xl">
+              that&apos;s me!
+            </figcaption>
+          </figure>
+
+          <p className={`${labelBase} md:col-start-1 md:row-start-1 md:justify-end md:self-end`}>
+            {heroLabels.topLeft}
+            <Arrow />
+          </p>
+          <p className={`${labelBase} md:col-start-3 md:row-start-1 md:justify-start md:self-end`}>
+            <Arrow className="-scale-x-100" />
+            {heroLabels.topRight}
+          </p>
+          <p className={`${labelBase} md:col-start-1 md:row-start-2 md:justify-end md:self-start`}>
+            {heroLabels.bottomLeft}
+            <Arrow className="-scale-y-100" />
+          </p>
+          <p className={`${labelBase} md:col-start-3 md:row-start-2 md:justify-start md:self-start`}>
+            <Arrow className="-scale-100" />
+            {heroLabels.bottomRight}
+          </p>
         </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease }}
-          className="mt-28 text-center text-[10px] font-semibold uppercase tracking-[0.5em] text-rose md:mt-36 md:text-xs"
-        >
-          {site.role}
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.9, ease }}
-          className="mt-5 max-w-md text-center text-sm leading-relaxed text-muted md:text-base"
-        >
-          {site.tagline} Scroll-stopping stories, managed feeds, and audiences
-          that stick around.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.05, ease }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-3"
-        >
-          <a
-            href="#watch"
-            className="rounded-full bg-ink px-7 py-3.5 text-sm font-semibold text-paper transition-all duration-300 hover:bg-rose hover:shadow-[4px_5px_0_0_rgba(22,18,15,0.9)]"
-          >
-            Watch my work
-          </a>
-          <a
-            href="#contact"
-            className="rounded-full border-2 border-ink px-7 py-3.5 text-sm font-semibold transition-all duration-300 hover:border-rose hover:text-rose"
-          >
-            Let&apos;s collaborate
-          </a>
-        </motion.div>
-      </div>
-
-      {/* poster footer strip */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.3, duration: 1 }}
-        className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-4 px-6 pb-8 text-[10px] font-semibold uppercase tracking-[0.25em] md:flex-row md:items-end md:justify-between md:px-10 md:text-xs"
-      >
-        <p className="text-muted">
-          Presented by
-          <span className="mt-1 block text-sm normal-case tracking-normal text-ink">
-            {site.name}
-          </span>
+        <div className="ornament mx-auto mt-14 max-w-md" aria-hidden>
+          ❦
+        </div>
+        <p className="mx-auto mt-6 max-w-2xl text-center font-display text-xl italic md:text-2xl">
+          “{site.tagline}”
         </p>
-        <div className="flex flex-wrap items-center gap-4">
-          {socials.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${s.label} — ${s.handle}`}
-              className="flex items-center gap-1.5 py-1.5 text-muted underline-offset-4 transition-colors duration-300 hover:text-rose hover:underline"
-            >
-              <SocialIcon name={s.label} className="size-3.5" />
-              {s.label}
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
+          {hasResume && (
+            <a href={site.resume} download="Pragati-Srivastava-Resume.pdf" className="btn btn-solid">
+              Download résumé <span aria-hidden>↓</span>
             </a>
-          ))}
+          )}
+          <a href="#brands" className={`btn ${hasResume ? "" : "btn-solid"}`}>
+            See the work
+          </a>
+          <a href="#contact" className="btn">
+            Get in touch
+          </a>
         </div>
-      </motion.div>
-    </section>
+      </div>
+    </header>
   );
 }
