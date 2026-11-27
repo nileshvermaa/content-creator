@@ -64,8 +64,8 @@ export default function Hero() {
             <span className="tape -top-3 left-1/2 -translate-x-1/2 -rotate-3" aria-hidden />
             <div className="relative aspect-[3/4] overflow-hidden">
               <Image
-                src="/pragati.jpg"
-                alt="Pragati Srivastava smiling at a café table in Lucknow"
+                src="/pragati-night.jpg"
+                alt="Portrait of Pragati Srivastava in a red dress at night"
                 fill
                 priority
                 sizes="(min-width: 768px) 336px, 74vw"

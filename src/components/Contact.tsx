@@ -14,8 +14,8 @@ export default function Contact() {
           <span className="tape -top-3 left-1/2 -translate-x-1/2 rotate-2" aria-hidden />
           <div className="relative aspect-[3/4] overflow-hidden">
             <Image
-              src="/pragati-night.jpg"
-              alt="Portrait of Pragati Srivastava in a red dress at night"
+              src="/pragati-garden.jpg"
+              alt="Pragati Srivastava in a red tee, posing under a tree in a garden"
               fill
               sizes="240px"
               className="object-cover"

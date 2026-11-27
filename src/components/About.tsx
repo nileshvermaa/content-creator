@@ -57,15 +57,15 @@ export default function About() {
               <span className="tape -top-3 left-6 -rotate-6" aria-hidden />
               <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
-                  src="/pragati-garden.jpg"
-                  alt="Pragati Srivastava in a red tee, posing under a tree in a garden"
+                  src="/pragati.jpg"
+                  alt="Pragati Srivastava smiling at a café table in Lucknow"
                   fill
                   sizes="(min-width: 768px) 360px, 92vw"
                   className="object-cover"
                 />
               </div>
               <figcaption className="absolute inset-x-0 bottom-2.5 text-center font-hand text-2xl">
-                golden hour, obviously
+                coffee first, content second
               </figcaption>
             </figure>
             <dl className="relative -mt-6 ml-auto w-[88%] rotate-1 bg-paper-soft p-5 shadow-[0_10px_30px_-12px_rgba(29,21,18,0.5)]">
